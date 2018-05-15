@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance { get; private set; }
     public static bool gameStarted = false;
+    public PlayerController[] playerController;
+    public PlayerController Cadavre = null;
 
     private void Awake()
     {
