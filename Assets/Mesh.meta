@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs.meta
 guid: 186a23ce7e20c264aba884111b6cb108
 folderAsset: yes
 timeCreated: 1526460161
+=======
+guid: 142fd83c78e5bb34f9ae9b0bbe8b138a
+folderAsset: yes
+timeCreated: 1526472630
+>>>>>>> Clemence:Assets/Mesh.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
