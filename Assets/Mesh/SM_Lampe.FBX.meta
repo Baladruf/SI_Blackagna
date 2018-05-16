@@ -1,38 +1,28 @@
 fileFormatVersion: 2
-guid: d9f627382518ec84db9c601ea28569a4
-timeCreated: 1526481475
+guid: 41329a0e439dd6c4d98f30210ee80199
+timeCreated: 1526481471
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Pied1
-    100002: Pied2
-    100004: Pied3
-    100006: Pied4
-    100008: //RootNode
-    100010: SM_Table
-    400000: Pied1
-    400002: Pied2
-    400004: Pied3
-    400006: Pied4
-    400008: //RootNode
-    400010: SM_Table
+    100000: Cylinder003
+    100002: SM_Ampoule
+    100004: //RootNode
+    100006: SM_Lampe
+    400000: Cylinder003
+    400002: SM_Ampoule
+    400004: //RootNode
+    400006: SM_Lampe
     2100000: No Name
-    2300000: Pied1
-    2300002: Pied2
-    2300004: Pied3
-    2300006: Pied4
-    2300008: SM_Table
-    3300000: Pied1
-    3300002: Pied2
-    3300004: Pied3
-    3300006: Pied4
-    3300008: SM_Table
-    4300000: SM_Table
-    4300002: Pied1
-    4300004: Pied2
-    4300006: Pied3
-    4300008: Pied4
+    2300000: Cylinder003
+    2300002: SM_Ampoule
+    2300004: SM_Lampe
+    3300000: Cylinder003
+    3300002: SM_Ampoule
+    3300004: SM_Lampe
+    4300000: SM_Lampe
+    4300002: Cylinder003
+    4300004: SM_Ampoule
   externalObjects: {}
   materials:
     importMaterials: 1
