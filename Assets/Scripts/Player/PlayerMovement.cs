@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
         if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
             playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed +(bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
         else
-            cadavre.rigidbodyCadavre.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
+            cadavre.rigidbodyCadavre.MovePosition(cadavre.transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
     }
 
     void AimUpdate() {

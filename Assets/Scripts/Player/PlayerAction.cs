@@ -27,6 +27,7 @@ public class PlayerAction : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        Debug.DrawRay(transform.position, transform.forward * 5,Color.red);
         var cadavre = GameManager.Instance.Cadavre;
         if (ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
         {

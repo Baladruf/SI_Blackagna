@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     public bool isHumain { get; private set; }
 
+    public Gradient alien_color_gradient;
+    private TrailRenderer alien_trail;
+
     private void Awake()
     {
         rankBonus = 0;
@@ -54,6 +57,8 @@ public class PlayerController : MonoBehaviour
         //id = idPlayer;
         //idPlayer++;
         //print("player " + gameObject.name + ", id = " + id);
+        alien_trail = transform.GetChild(1).GetComponent<TrailRenderer>();
+        alien_trail.colorGradient = alien_color_gradient;
     }
 
     // Update is called once per frame

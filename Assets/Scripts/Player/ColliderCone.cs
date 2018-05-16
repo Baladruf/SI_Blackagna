@@ -28,6 +28,7 @@ public class ColliderCone : MonoBehaviour {
             if(cadavre.cadavreWithPlayer == null)
             {
                 action.playerController.meshObject.GetComponent<MeshRenderer>().enabled = false;
+                //transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
                 action.playerController.transform.parent = cadavre.transform.GetChild(0);
                 action.playerController.transform.localPosition = Vector3.zero;
                 cadavre.cadavreWithPlayer = action.playerController;
