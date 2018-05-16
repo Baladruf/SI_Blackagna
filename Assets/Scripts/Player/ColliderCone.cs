@@ -19,9 +19,11 @@ public class ColliderCone : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Food")
         {
-            print("player touche");
+            var food = other.GetComponent<Food>();
+            food.Eat();
+            action.playerController.RecupFood();
         }else if(other.tag == "Cadavre")
         {
             var cadavre = GameManager.Instance.Cadavre;
@@ -32,10 +34,6 @@ public class ColliderCone : MonoBehaviour {
                 action.playerController.transform.parent = cadavre.transform.GetChild(0);
                 action.playerController.transform.localPosition = Vector3.zero;
                 cadavre.cadavreWithPlayer = action.playerController;
-            }
-            else
-            {
-                //attaque
             }
         }
     }

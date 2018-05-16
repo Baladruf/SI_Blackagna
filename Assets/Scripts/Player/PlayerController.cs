@@ -19,7 +19,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Ruche ruchePlayer;
 
 
-    [SerializeField] int life = 100;
+    private float life;
+    [SerializeField] int maxLife = 100;
+    [SerializeField] float dot = 2;
+    [SerializeField] int maxHumainLife = 500;
+    [SerializeField] float recupHpHumain = 2;
+    [SerializeField] int foodRecup = 15;
+
     [SerializeField] int damagaShot = 5;
     [SerializeField] int damagePunch = 3;
 
@@ -39,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        life = maxLife;
         rankBonus = 0;
         isHumain = false;
         rb = GetComponent<Rigidbody>();
@@ -64,9 +71,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var cadavre = GameManager.Instance.Cadavre.cadavreWithPlayer;
+        if(ReferenceEquals(this, cadavre))
+        {
+            life = Mathf.Min(maxHumainLife, life + (recupHpHumain * Time.deltaTime));
+        }
+
         if(timerInvicible != 0)
         {
             timerInvicible = Mathf.Max(0, timerInvicible - Time.deltaTime);
+            return;
+        }
+
+        if (!ReferenceEquals(this, cadavre))
+        {
+            life -= dot * Time.deltaTime;
         }
     }
 
@@ -83,10 +102,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var cadavre = GameManager.Instance.Cadavre;
         if (timerInvicible > 0)
             return;
 
-        if(other.tag == "Punch")
+
+        if (cadavre.cadavreWithPlayer == null)
+            return;
+
+        var player = other.GetComponent<PlayerController>();
+        if (other.tag == "Punch" && player != null && ReferenceEquals(cadavre.cadavreWithPlayer, player))
         {
             TakeDamage(damagePunch + (int)(bonus * rankBonus));
         }
@@ -114,15 +139,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, PlayerController player = null)
     {
         life -= damage;
-        if(life < 0){
-            isDead = true;
-            colliderPlayer.enabled = false;
-            meshObject.GetComponent<Renderer>().enabled = false;
-            StartCoroutine(Respawn());
-            //dead
+        if (ReferenceEquals(this, GameManager.Instance.Cadavre.cadavreWithPlayer))
+        {
+            if(life < 0)
+            {
+                life = maxLife;
+                //echanger de corps
+            }
+        }
+        else
+        {
+            if (life < 0)
+            {
+                isDead = true;
+                colliderPlayer.enabled = false;
+                meshObject.GetComponent<Renderer>().enabled = false;
+                StartCoroutine(Respawn());
+                //dead
+            }
         }
     }
 
@@ -134,6 +171,7 @@ public class PlayerController : MonoBehaviour
             transform.position = ruchePlayer.spawnPlayer.position;
             colliderPlayer.enabled = true;
             meshObject.GetComponent<Renderer>().enabled = true;
+            life = maxLife;
             if (timeDead + penaliteDead < maxTimeDead)
                 timeDead += penaliteDead;
             else
@@ -149,5 +187,10 @@ public class PlayerController : MonoBehaviour
     public void InitInvincible()
     {
         timerInvicible = delayInvicibleRucheDestry;
+    }
+
+    public void RecupFood()
+    {
+        life = Mathf.Max(maxLife, life + foodRecup);
     }
 }
