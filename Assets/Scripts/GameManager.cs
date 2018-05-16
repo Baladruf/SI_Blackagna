@@ -9,10 +9,16 @@ public class GameManager : MonoBehaviour {
     public static bool gameStarted = false;
     public Transform playersControllers;
     public Cadavre Cadavre;
+    public PlayerController[] players;
 
     private void Awake()
     {
         Instance = this;
+        players = new PlayerController[4];
+        for(int i = 0; i < 4; i++)
+        {
+            players[i] = playersControllers.GetChild(i).GetComponent<PlayerController>();
+        }
     }
 
     private void Start()

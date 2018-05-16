@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     public float moveSpeed; 
     [Range(0, 1)]
     public float aimDeadZone = 0.4f;
+    [SerializeField] float bonusSpeed = 0.5f;
 
     public bool isStun {get; private set;}
 
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (!GameManager.gameStarted) {
+        if (!GameManager.gameStarted && !playerController.isDead) {
             return;
         }
         MovementUpdate();
@@ -34,9 +35,9 @@ public class PlayerMovement : MonoBehaviour {
 
         var cadavre = GameManager.Instance.Cadavre;
         if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
-            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * moveSpeed * Time.deltaTime);
+            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed +(bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
         else
-            cadavre.rigidbodyCadavre.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * moveSpeed * Time.deltaTime);
+            cadavre.rigidbodyCadavre.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
     }
 
     void AimUpdate() {
