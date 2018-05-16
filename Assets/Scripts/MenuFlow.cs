@@ -8,25 +8,33 @@ using Rewired;
 
 public class MenuFlow : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Start Menu")]
+    public Image TitleLogo;
+    public Text TitleText;
     public Text PressStart;
+    public Text CreditText;
+
+    [Header("Player Menu")]
+    public GameObject PlayerMenu;
     public Text[] PlayerRefStart;
     public GameObject[] PlayerRefReady;
 
     //--------------------------------------------------------
     private float _pulseValue;
+    private bool _pulsing;
     private bool _isStartScreen = true;
 
     private void Start()
     {
         _pulseValue = 0.44f;
-
+        _pulsing = true;
         StartCoroutine(Pulse());
     }
 
 	public void StartPressed()
     {
         _pulseValue = 0.13f;
+        StartCoroutine(StartToPlayer());
     }
 
     public void ReadyPressed(int playerID)
@@ -40,12 +48,27 @@ public class MenuFlow : MonoBehaviour
 
     IEnumerator Pulse()
     {
-        while (true)
+        while (_pulsing)
         {
-            Tween twFdO = PressStart.DOFade(0.2f, _pulseValue);
-            yield return new WaitWhile(twFdO.IsPlaying);
             Tween twFdI = PressStart.DOFade(0.8f, _pulseValue);
             yield return new WaitWhile(twFdI.IsPlaying);
+            Tween twFdO = PressStart.DOFade(0.2f, _pulseValue);
+            yield return new WaitWhile(twFdO.IsPlaying);
         }
+    }
+
+    IEnumerator StartToPlayer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _pulsing = false;
+        DOTween.Clear();
+
+        Tween twTLO = TitleLogo.DOFade(0.0f, 0.15f);
+        TitleText.DOFade(0.0f, 0.15f);
+        PressStart.DOFade (0.0f, 00.15f);
+        CreditText.DOFade(0.0f, 0.15f);
+        yield return new WaitWhile(twTLO.IsPlaying);
+
+        PlayerMenu.SetActive(true);
     }
 }
