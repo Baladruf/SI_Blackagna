@@ -42,7 +42,7 @@ public class MenuFlow : MonoBehaviour
         PlayerRefStart[playerID].gameObject.SetActive(false);
         PlayerRefReady[playerID].SetActive(true);
 
-        if (PlayerRefReady[0] && PlayerRefReady[1] && PlayerRefReady[2] && PlayerRefReady[3])
+        if (PlayerRefReady[0].activeSelf && PlayerRefReady[1].activeSelf && PlayerRefReady[2].activeSelf && PlayerRefReady[3].activeSelf)
             Debug.Log("Start Game");
     }
 
@@ -52,9 +52,11 @@ public class MenuFlow : MonoBehaviour
         {
             Tween twFdI = PressStart.DOFade(0.8f, _pulseValue);
             yield return new WaitWhile(twFdI.IsPlaying);
-            Tween twFdO = PressStart.DOFade(0.2f, _pulseValue);
+            Tween twFdO = PressStart.DOFade(0.0f, _pulseValue);
             yield return new WaitWhile(twFdO.IsPlaying);
         }
+        PressStart.DOFade(0.0f, 0.15f);
+
     }
 
     IEnumerator StartToPlayer()
@@ -65,7 +67,6 @@ public class MenuFlow : MonoBehaviour
 
         Tween twTLO = TitleLogo.DOFade(0.0f, 0.15f);
         TitleText.DOFade(0.0f, 0.15f);
-        PressStart.DOFade (0.0f, 00.15f);
         CreditText.DOFade(0.0f, 0.15f);
         yield return new WaitWhile(twTLO.IsPlaying);
 
