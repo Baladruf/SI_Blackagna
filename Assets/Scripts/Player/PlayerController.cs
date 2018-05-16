@@ -79,6 +79,15 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
+
+        if (collision.transform.tag == "ExtWall")
+        {
+            int motorIndex = 0;
+            float motorLevel = 1.0f;
+            float duration = 2.0f;
+
+            //--------------------------------VIBRATION------------------------
+        }
     }
 
     private void OnTriggerEnter(Collider other)
