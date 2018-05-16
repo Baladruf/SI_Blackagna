@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
 
     public bool isHumain { get; private set; }
 
+    //pour la tint
+    public Gradient alien_color_gradient;
+    private TrailRenderer alien_trail;
+
     private void Awake()
     {
         isHumain = false;
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
         player = ReInput.players.GetPlayer(idPlayer);
         (movement = GetComponent<PlayerMovement>()).playerController = this;
         (action = GetComponent<PlayerAction>()).playerController = this;
+        alien_trail = transform.GetChild(1).GetComponent<TrailRenderer>();
+        alien_trail.colorGradient = alien_color_gradient;
     }
 
     // Update is called once per frame
