@@ -31,7 +31,12 @@ public class PlayerMovement : MonoBehaviour {
         if (isStun) {
             return;
         }
-        playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * moveSpeed * Time.deltaTime);
+
+        var cadavre = GameManager.Instance.Cadavre;
+        if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
+            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * moveSpeed * Time.deltaTime);
+        else
+            cadavre.rigidbodyCadavre.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * moveSpeed * Time.deltaTime);
     }
 
     void AimUpdate() {
@@ -40,7 +45,11 @@ public class PlayerMovement : MonoBehaviour {
         } 
         Vector3 lookDirection = new Vector3(playerController.player.GetAxis("AimHorizontal"), 0, playerController.player.GetAxis("AimVertical")).normalized;
         if (lookDirection != Vector3.zero) {
-            playerController.SetPlayerForward(lookDirection);
+            var cadavre = GameManager.Instance.Cadavre;
+            if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
+                playerController.SetPlayerForward(lookDirection);
+            else
+                cadavre.transform.GetChild(0).forward = lookDirection;
         }
     }
 
