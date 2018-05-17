@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity != Vector3.zero)
         {
+            Debug.Log(rb.velocity);
             rb.velocity = new Vector3(Mathf.Max(0, rb.velocity.x - (ralentir * Time.deltaTime)), 0, Mathf.Max(0, rb.velocity.z - (ralentir * Time.deltaTime)));
         }
 

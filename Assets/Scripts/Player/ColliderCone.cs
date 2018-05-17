@@ -40,6 +40,7 @@ public class ColliderCone : MonoBehaviour {
         //transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
         action.playerController.transform.parent = GameManager.Instance.Cadavre.transform.GetChild(0);
         action.playerController.transform.localPosition = Vector3.zero;
+        action.playerController.transform.localRotation = Quaternion.identity;
         GameManager.Instance.Cadavre.cadavreWithPlayer = action.playerController;
         action.playerController.SetHumainLife();
     }
