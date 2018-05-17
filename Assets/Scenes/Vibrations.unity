@@ -176,7 +176,11 @@ MonoBehaviour:
   id: 3
   meshObject: {fileID: 31301168}
   ruchePlayer: {fileID: 949312962}
-  life: 0
+  maxLife: 100
+  dot: 2
+  maxHumainLife: 500
+  recupHpHumain: 2
+  foodRecup: 15
   damagaShot: 5
   damagePunch: 3
   timeDead: 2
@@ -504,7 +508,11 @@ MonoBehaviour:
   id: 0
   meshObject: {fileID: 302405666}
   ruchePlayer: {fileID: 57100614}
-  life: 0
+  maxLife: 100
+  dot: 2
+  maxHumainLife: 500
+  recupHpHumain: 2
+  foodRecup: 15
   damagaShot: 5
   damagePunch: 3
   timeDead: 2
@@ -3161,6 +3169,7 @@ GameObject:
   - component: {fileID: 1233306433}
   - component: {fileID: 1233306432}
   - component: {fileID: 1233306431}
+  - component: {fileID: 1233306435}
   m_Layer: 0
   m_Name: NewAlien1
   m_TagString: Untagged
@@ -3244,7 +3253,11 @@ MonoBehaviour:
   id: 0
   meshObject: {fileID: 972217146}
   ruchePlayer: {fileID: 57100614}
-  life: 100
+  maxLife: 100
+  dot: 2
+  maxHumainLife: 500
+  recupHpHumain: 2
+  foodRecup: 15
   damagaShot: 5
   damagePunch: 3
   timeDead: 2
@@ -3281,6 +3294,18 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+--- !u!114 &1233306435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233306429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef54c72a76e42b4f93a3b6b2b592d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
 --- !u!4 &1250305747
 Transform:
   m_ObjectHideFlags: 0
@@ -4741,7 +4766,11 @@ MonoBehaviour:
   id: 2
   meshObject: {fileID: 2000224877}
   ruchePlayer: {fileID: 1321017105}
-  life: 0
+  maxLife: 100
+  dot: 2
+  maxHumainLife: 500
+  recupHpHumain: 2
+  foodRecup: 15
   damagaShot: 5
   damagePunch: 3
   timeDead: 2
@@ -5019,6 +5048,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 6
+      _name: Screech
+      _type: 1
+      _descriptiveName: Screech
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -5028,7 +5066,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 000000000100000002000000030000000400000005000000
+        actionIds: 00000000010000000200000003000000040000000500000006000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -5156,7 +5194,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 6
         _elementType: 1
         _elementIdentifierId: 7
         _axisRange: 0
@@ -5336,7 +5374,7 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 6
-    actionIdCounter: 6
+    actionIdCounter: 7
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1
@@ -5961,7 +5999,11 @@ MonoBehaviour:
   id: 1
   meshObject: {fileID: 2144151082}
   ruchePlayer: {fileID: 730273969}
-  life: 0
+  maxLife: 100
+  dot: 2
+  maxHumainLife: 500
+  recupHpHumain: 2
+  foodRecup: 15
   damagaShot: 5
   damagePunch: 3
   timeDead: 2
