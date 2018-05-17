@@ -9,8 +9,10 @@ public class Screeching : MonoBehaviour
 	public int Id;
 	public float Cooldown = 1.0f;
     public ParticleSystem wave;
+    [System.NonSerialized]
+    public PlayerAbstrait playerController;
 
-	private bool canScreech = true;
+    private bool canScreech = true;
 
 	private void Start()
 	{
@@ -18,6 +20,11 @@ public class Screeching : MonoBehaviour
 	}
 	void Update()
 	{
+        if (playerController.isDead)
+        {
+            return;
+        }
+
         if (canScreech && Player.GetButtonDown("Screech"))
         {
             canScreech = false;
