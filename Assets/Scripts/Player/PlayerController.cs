@@ -40,7 +40,7 @@ public class PlayerController : PlayerAbstrait
     void Update()
     {
         TakeDamage(dot * Time.deltaTime);
-        alien_trail.widthMultiplier = 1 - (life / maxLife);
+        alien_trail.widthMultiplier = life / maxLife;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -107,7 +107,8 @@ public class PlayerController : PlayerAbstrait
 
     public void RecupFood()
     {
-        life = Mathf.Max(maxLife, life + foodRecup);
+        //life = Mathf.Max(maxLife, life + foodRecup);
+        life = Mathf.Min(maxLife, life + foodRecup);
     }
 
     public void RecupFullLife()
