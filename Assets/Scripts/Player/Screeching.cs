@@ -8,6 +8,7 @@ public class Screeching : MonoBehaviour
 	public Player Player;
 	public int Id;
 	public float Cooldown = 1.0f;
+    public ParticleSystem wave;
 
 	private bool canScreech = true;
 
@@ -17,15 +18,18 @@ public class Screeching : MonoBehaviour
 	}
 	void Update()
 	{
-		if (canScreech && Player.GetButtonDown("Screech"))
-			canScreech = false;
-			StartCoroutine(Screech());
-	}
+        if (canScreech && Player.GetButtonDown("Screech"))
+        {
+            canScreech = false;
+            StartCoroutine(Screech());
+        }
+    }
 
 	IEnumerator Screech()
 	{
 		Debug.Log("Screech");
-		yield return new WaitForSeconds(Cooldown);
-		canScreech = true;		
+        wave.Play();
+        yield return new WaitForSeconds(Cooldown);
+		canScreech = true;
 	}
 }

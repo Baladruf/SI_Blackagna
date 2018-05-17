@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour {
         if (!GameManager.gameStarted && !playerController.isDead) {
             return;
         }
-        MovementUpdate();
         AimUpdate();
+        MovementUpdate();
         OutOfBoundsUpdate();
     }
 
@@ -35,22 +35,44 @@ public class PlayerMovement : MonoBehaviour {
 
         var cadavre = GameManager.Instance.Cadavre;
         if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
-            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed +(bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
+            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
         else
+        {
             cadavre.rigidbodyCadavre.MovePosition(cadavre.transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
+            if(transform.localPosition != Vector3.zero)
+            {
+                transform.localPosition = Vector3.zero;
+            }
+        }
     }
 
     void AimUpdate() {
-        if (Mathf.Abs(playerController.player.GetAxis("AimHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("AimVertical")) < aimDeadZone) { 
-            return; 
-        } 
-        Vector3 lookDirection = new Vector3(playerController.player.GetAxis("AimHorizontal"), 0, playerController.player.GetAxis("AimVertical")).normalized;
-        if (lookDirection != Vector3.zero) {
-            var cadavre = GameManager.Instance.Cadavre;
-            if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
+        if (!ReferenceEquals(playerController, GameManager.Instance.Cadavre.cadavreWithPlayer))
+        {
+            print("la aussi");
+            if (Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("MoveVertical")) < aimDeadZone)
+            {
+                return;
+            }
+            Vector3 lookDirection = new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")).normalized;
+            if (lookDirection != Vector3.zero)
+            {
                 playerController.SetPlayerForward(lookDirection);
-            else
+            }
+        }
+        else
+        {
+            /*if (Mathf.Abs(playerController.player.GetAxis("AimHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("AimVertical")) < aimDeadZone)
+            {
+                return;
+            }*/
+            print("active");
+            Vector3 lookDirection = new Vector3(playerController.player.GetAxis("AimHorizontal"), 0, playerController.player.GetAxis("AimVertical")).normalized;
+            if (lookDirection != Vector3.zero)
+            {
+                var cadavre = GameManager.Instance.Cadavre;
                 cadavre.transform.GetChild(0).forward = lookDirection;
+            }
         }
     }
 
