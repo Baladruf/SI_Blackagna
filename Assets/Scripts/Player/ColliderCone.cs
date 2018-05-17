@@ -29,12 +29,18 @@ public class ColliderCone : MonoBehaviour {
             var cadavre = GameManager.Instance.Cadavre;
             if(cadavre.cadavreWithPlayer == null)
             {
-                action.playerController.meshObject.GetComponent<MeshRenderer>().enabled = false;
-                //transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-                action.playerController.transform.parent = cadavre.transform.GetChild(0);
-                action.playerController.transform.localPosition = Vector3.zero;
-                cadavre.cadavreWithPlayer = action.playerController;
+                SetCadavrePlayer();
             }
         }
+    }
+
+    public void SetCadavrePlayer()
+    {
+        action.playerController.meshObject.GetComponent<MeshRenderer>().enabled = false;
+        //transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        action.playerController.transform.parent = GameManager.Instance.Cadavre.transform.GetChild(0);
+        action.playerController.transform.localPosition = Vector3.zero;
+        GameManager.Instance.Cadavre.cadavreWithPlayer = action.playerController;
+        action.playerController.SetHumainLife();
     }
 }

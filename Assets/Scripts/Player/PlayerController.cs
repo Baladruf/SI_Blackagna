@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public int rankBonus { get; private set; }
     [SerializeField] float bonus = 0.5f;
 
+    [SerializeField] float forcePropulsion;
+    [SerializeField] float forcePropulsionUp;
+
     public bool isHumain { get; private set; }
 
     public Gradient alien_color_gradient;
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (!ReferenceEquals(this, cadavre))
         {
-            life -= dot * Time.deltaTime;
+            TakeDamage(dot * Time.deltaTime);
         }
     }
 
@@ -119,10 +122,14 @@ public class PlayerController : MonoBehaviour
         if (cadavre.cadavreWithPlayer == null)
             return;
 
-        var player = other.GetComponent<PlayerController>();
-        if (other.tag == "Punch" && player != null && ReferenceEquals(cadavre.cadavreWithPlayer, player))
+        var player = other.GetComponent<ColliderCone>().action.playerController;
+        print(ReferenceEquals(cadavre.cadavreWithPlayer, this));
+        print("player = " + (player != null));
+        if (other.tag == "Punch" && player != null && ReferenceEquals(cadavre.cadavreWithPlayer, this))
         {
-            TakeDamage(damagePunch + (int)(bonus * rankBonus));
+            print("next etape");
+            TakeDamage(damagePunch + (int)(bonus * rankBonus), player);
+            print("end etape");
         }
     }
 
@@ -148,15 +155,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage, PlayerController player = null)
+    public void TakeDamage(float damage, PlayerController player = null)
     {
         life -= damage;
         if (ReferenceEquals(this, GameManager.Instance.Cadavre.cadavreWithPlayer))
         {
             if(life < 0)
             {
+                var manager = GameManager.Instance;
                 life = maxLife;
-                //echanger de corps
+                transform.parent = manager.playersControllers;
+                meshObject.GetComponent<Renderer>().enabled = true;
+                transform.forward = (player.transform.position - manager.Cadavre.transform.position).normalized.WithY(0);
+                GetComponent<Rigidbody>().AddForce(((player.transform.position - transform.position).normalized * forcePropulsion).WithY(forcePropulsionUp), ForceMode.VelocityChange);
+                if(player != null)
+                {
+                    player.action.colliderCone.SetCadavrePlayer();
+                }
             }
         }
         else
@@ -201,5 +216,10 @@ public class PlayerController : MonoBehaviour
     public void RecupFood()
     {
         life = Mathf.Max(maxLife, life + foodRecup);
+    }
+
+    public void SetHumainLife()
+    {
+        life = maxHumainLife;
     }
 }
