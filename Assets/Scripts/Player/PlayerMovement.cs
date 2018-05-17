@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (!GameManager.gameStarted || playerController.isDead) {
+        if (!GameManager.gameStarted || playerController.isDead || !playerController.isActif) {
             return;
         }
         AimUpdate();

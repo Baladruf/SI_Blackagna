@@ -33,7 +33,7 @@ public class PlayerAction : MonoBehaviour {
     void Update () {
         Debug.DrawRay(transform.position, transform.forward * 5,Color.red);
 
-        if (playerController.isDead)
+        if (playerController.isDead || !playerController.isActif)
         {
             return;
         }

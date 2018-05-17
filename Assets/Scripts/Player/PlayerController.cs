@@ -15,9 +15,6 @@ public class PlayerController : PlayerAbstrait
     [SerializeField] float penaliteDead = 1;
     [SerializeField] float maxTimeDead = 10;
 
-    public Gradient alien_color_gradient;
-    private TrailRenderer alien_trail;
-
     protected override void Awake()
     {
         base.Awake();
