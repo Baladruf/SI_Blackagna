@@ -1,86 +1,49 @@
 fileFormatVersion: 2
-guid: 586dca96301d19f4aa4732dcb6627d48
-timeCreated: 1526556858
+guid: 96d1ceb768dc2004394b7511c5db193e
+timeCreated: 1526555882
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Box001
-    100002: Box002
-    100004: Box008
-    100006: Box010
-    100008: Box011
-    100010: Box012
-    100012: Box013
-    100014: Box014
-    100016: Box015
-    100018: Box016
-    100020: Box018
-    100022: Box019
-    100024: Box020
-    100026: //RootNode
-    400000: Box001
-    400002: Box002
-    400004: Box008
-    400006: Box010
-    400008: Box011
-    400010: Box012
-    400012: Box013
-    400014: Box014
-    400016: Box015
-    400018: Box016
-    400020: Box018
-    400022: Box019
-    400024: Box020
-    400026: //RootNode
+    100000: Box022
+    100002: Cylinder008
+    100004: Cylinder009
+    100006: Cylinder010
+    100008: Cylinder011
+    100010: Object008
+    100012: //RootNode
+    400000: Box022
+    400002: Cylinder008
+    400004: Cylinder009
+    400006: Cylinder010
+    400008: Cylinder011
+    400010: Object008
+    400012: //RootNode
     2100000: No Name
-    2300000: Box001
-    2300002: Box002
-    2300004: Box008
-    2300006: Box010
-    2300008: Box011
-    2300010: Box012
-    2300012: Box013
-    2300014: Box014
-    2300016: Box015
-    2300018: Box016
-    2300020: Box018
-    2300022: Box019
-    2300024: Box020
-    3300000: Box001
-    3300002: Box002
-    3300004: Box008
-    3300006: Box010
-    3300008: Box011
-    3300010: Box012
-    3300012: Box013
-    3300014: Box014
-    3300016: Box015
-    3300018: Box016
-    3300020: Box018
-    3300022: Box019
-    3300024: Box020
-    4300000: Box001
-    4300002: Box002
-    4300004: Box008
-    4300006: Box010
-    4300008: Box011
-    4300010: Box012
-    4300012: Box013
-    4300014: Box014
-    4300016: Box015
-    4300018: Box016
-    4300020: Box018
-    4300022: Box019
-    4300024: Box020
-    7400000: Take 001
-    9500000: //RootNode
+    2300000: Box022
+    2300002: Cylinder008
+    2300004: Cylinder009
+    2300006: Cylinder010
+    2300008: Cylinder011
+    2300010: Object008
+    3300000: Box022
+    3300002: Cylinder008
+    3300004: Cylinder009
+    3300006: Cylinder010
+    3300008: Cylinder011
+    3300010: Object008
+    4300000: Box022
+    4300002: Cylinder008
+    4300004: Cylinder009
+    4300006: Cylinder010
+    4300008: Cylinder011
+    4300010: Object008
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 51aec89473cd16749810251456e42d67, type: 2}
+    second: {fileID: 2100000, guid: 34f27d5a05442ec47bce24eea1177509, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -154,7 +117,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
