@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 69c06d2568621e744a5261e099ab79c8
-timeCreated: 1526488095
+guid: 86a5a7ac6023e7f43b1786cbdd685733
+timeCreated: 1526543693
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -73,7 +73,14 @@ ModelImporter:
     4300020: Box018
     4300022: Box019
     4300024: Box020
-  externalObjects: {}
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 51aec89473cd16749810251456e42d67, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -147,7 +154,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
