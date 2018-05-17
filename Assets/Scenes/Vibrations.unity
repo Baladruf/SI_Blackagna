@@ -455,10 +455,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &156652374
 CapsuleCollider:
@@ -2881,7 +2881,7 @@ GameObject:
   - component: {fileID: 1077458988}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: DoNotRumble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2926,7 +2926,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077458983}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb1f14375166a1f4d89a6a8f3f0b9f9f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3023,7 +3023,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13410
+  m_Name: pb_Mesh12896
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3196,9 +3196,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1233306432
 CapsuleCollider:

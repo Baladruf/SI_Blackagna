@@ -1668,6 +1668,16 @@ Prefab:
       propertyPath: m_Name
       value: NewAlien1
       objectReference: {fileID: 0}
+    - target: {fileID: 54454798940077922, guid: 10d3e83e37eb5eb4dad3d5abd3cac01f,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54454798940077922, guid: 10d3e83e37eb5eb4dad3d5abd3cac01f,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10d3e83e37eb5eb4dad3d5abd3cac01f, type: 2}
   m_IsPrefabParent: 0
