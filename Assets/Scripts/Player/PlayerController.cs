@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (timerInvicible > 0)
             return;
 
@@ -101,14 +102,13 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
-
-        if (collision.transform.tag == "ExtWall")
+        else if (collision.transform.tag == "ExtWall")
         {
-            int motorIndex = 0;
-            float motorLevel = 1.0f;
-            float duration = 2.0f;
-
-            //--------------------------------VIBRATION------------------------
+            StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
+        }
+        else if(collision.transform.tag != "DoNotRumble")
+        {
+            StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
         }
     }
 
@@ -221,5 +221,18 @@ public class PlayerController : MonoBehaviour
     public void SetHumainLife()
     {
         life = maxHumainLife;
+    }
+
+    IEnumerator Rumble(float leftMotor, float rightMotor, float duration)
+    {
+        Rewired.Joystick joy = player.controllers.Joysticks[id];
+        joy.StopVibration();
+
+        joy.SetVibration(0, leftMotor, true);
+        joy.SetVibration(1, rightMotor, false);
+
+        yield return new WaitForSeconds(duration);
+
+        joy.StopVibration();
     }
 }

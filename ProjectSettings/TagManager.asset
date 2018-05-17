@@ -9,6 +9,7 @@ TagManager:
   - Punch
   - Food
   - ExtWall
+  - DoNotRumble
   layers:
   - Default
   - TransparentFX
