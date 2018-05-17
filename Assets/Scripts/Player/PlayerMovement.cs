@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour {
             return;
         }
 
+        //print();
+        playerController.animator.SetFloat("move", Mathf.Max(Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")), Mathf.Abs(playerController.player.GetAxis("MoveVertical"))));
         playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
 
     }
