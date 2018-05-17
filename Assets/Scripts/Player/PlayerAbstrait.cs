@@ -26,6 +26,11 @@ public abstract class PlayerAbstrait : MonoBehaviour {
     public GameObject shotPrefab;
     protected Renderer rendererMesh;
 
+    public Gradient alien_color_gradient;
+    protected TrailRenderer alien_trail;
+
+    public bool isActif { get; protected set; }
+
     public void SetPlayerForward(Vector3 value)
     {
         if (value != Vector3.zero)
@@ -44,6 +49,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
         (screeching = GetComponent<Screeching>()).playerController = this;
         rendererMesh = meshObject.GetComponent<Renderer>();
         isDead = false;
+        isActif = true;
     }
 
     public void TimerInvincible()
@@ -74,12 +80,16 @@ public abstract class PlayerAbstrait : MonoBehaviour {
             rendererMesh.enabled = true;
             colliderPlayer.enabled = true;
             rb.useGravity = true;
+            alien_trail.enabled = true;
+            isActif = true;
         }
         else
         {
             rendererMesh.enabled = false;
             rb.useGravity = false;
             colliderPlayer.enabled = false;
+            alien_trail.enabled = false;
+            isActif = false;
         }
     }
 }

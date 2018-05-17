@@ -20,7 +20,7 @@ public class Screeching : MonoBehaviour
 	}
 	void Update()
 	{
-        if (playerController.isDead)
+        if (playerController.isDead || !playerController.isActif)
         {
             return;
         }
