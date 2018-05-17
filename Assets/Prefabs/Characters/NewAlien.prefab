@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114235281962080504}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Punch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,9 +125,9 @@ GameObject:
   - component: {fileID: 114298828037360854}
   - component: {fileID: 136257229995815708}
   - component: {fileID: 54454798940077922}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: NewAlien
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -498,10 +498,10 @@ MonoBehaviour:
   id: 0
   meshObject: {fileID: 1837305597713088}
   ruchePlayer: {fileID: 0}
-  maxLife: 100
-  dot: 2
-  maxHumainLife: 500
-  recupHpHumain: 2
+  maxLife: 20
+  dot: 0
+  maxHumainLife: 100
+  recupHpHumain: 0.5
   foodRecup: 15
   damagaShot: 20
   damagePunch: 3
@@ -510,6 +510,8 @@ MonoBehaviour:
   maxTimeDead: 10
   delayInvicibleRucheDestry: 5
   bonus: 0.5
+  forcePropulsion: 25
+  ralentir: 20
   alien_color_gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 0.5882353}

@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public int rankBonus { get; private set; }
     [SerializeField] float bonus = 0.5f;
 
+    [SerializeField] float forcePropulsion = 25;
+    [SerializeField] float ralentir = 5;
+
     public bool isHumain { get; private set; }
 
     public Gradient alien_color_gradient;
@@ -71,6 +74,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity != Vector3.zero)
+        {
+            rb.velocity = new Vector3(Mathf.Max(0, rb.velocity.x - (ralentir * Time.deltaTime)), 0, Mathf.Max(0, rb.velocity.z - (ralentir * Time.deltaTime)));
+        }
+
         var cadavre = GameManager.Instance.Cadavre.cadavreWithPlayer;
         if(ReferenceEquals(this, cadavre))
         {
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
         if (!ReferenceEquals(this, cadavre))
         {
-            life -= dot * Time.deltaTime;
+            TakeDamage(dot * Time.deltaTime);
         }
     }
 
@@ -99,14 +107,14 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
-        else if (collision.transform.tag == "ExtWall")
+        /*else if (collision.transform.tag == "ExtWall")
         {
             StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
         }
         else if(collision.transform.tag != "DoNotRumble")
         {
             StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -119,10 +127,14 @@ public class PlayerController : MonoBehaviour
         if (cadavre.cadavreWithPlayer == null)
             return;
 
-        var player = other.GetComponent<PlayerController>();
-        if (other.tag == "Punch" && player != null && ReferenceEquals(cadavre.cadavreWithPlayer, player))
+        var player = other.GetComponent<ColliderCone>().action.playerController;
+        print(ReferenceEquals(cadavre.cadavreWithPlayer, this));
+        print("player = " + (player != null));
+        if (other.tag == "Punch" && player != null && ReferenceEquals(cadavre.cadavreWithPlayer, this))
         {
-            TakeDamage(damagePunch + (int)(bonus * rankBonus));
+            print("next etape");
+            TakeDamage(damagePunch + (int)(bonus * rankBonus), player);
+            print("end etape");
         }
     }
 
@@ -148,15 +160,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage, PlayerController player = null)
+    public void TakeDamage(float damage, PlayerController player = null)
     {
         life -= damage;
         if (ReferenceEquals(this, GameManager.Instance.Cadavre.cadavreWithPlayer))
         {
             if(life < 0)
             {
+                var manager = GameManager.Instance;
                 life = maxLife;
-                //echanger de corps
+                transform.parent = manager.playersControllers;
+                meshObject.GetComponent<Renderer>().enabled = true;
+
+                if(player != null)
+                {
+                    transform.forward = (player.transform.position - manager.Cadavre.transform.position).normalized.WithY(0);
+                    print(-transform.forward * forcePropulsion);
+                    rb.velocity = -transform.forward * forcePropulsion;
+                    player.action.colliderCone.SetCadavrePlayer();
+                }
             }
         }
         else
@@ -201,6 +223,11 @@ public class PlayerController : MonoBehaviour
     public void RecupFood()
     {
         life = Mathf.Max(maxLife, life + foodRecup);
+    }
+
+    public void SetHumainLife()
+    {
+        life = maxHumainLife;
     }
 
     IEnumerator Rumble(float leftMotor, float rightMotor, float duration)

@@ -6,7 +6,8 @@ public class PlayerAction : MonoBehaviour {
 
     [System.NonSerialized]
     public PlayerController playerController;
-    private ColliderCone colliderCone;
+    [System.NonSerialized]
+    public ColliderCone colliderCone;
     [SerializeField] float delayAttack = 0.5f;
     [SerializeField] float delayShot = 1.5f;
     [SerializeField] int nbMunitionByShot = 5;
