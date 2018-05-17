@@ -1,17 +1,34 @@
 fileFormatVersion: 2
-guid: 17cb54f7a3611c349a3ccbcfd4ac442f
-timeCreated: 1526472637
+guid: 41329a0e439dd6c4d98f30210ee80199
+timeCreated: 1526481471
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Cylinder003
+    100002: SM_Ampoule
+    100004: //RootNode
+    100006: SM_Lampe
+    400000: Cylinder003
+    400002: SM_Ampoule
+    400004: //RootNode
+    400006: SM_Lampe
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: SM_Chaise
-  externalObjects: {}
+    2300000: Cylinder003
+    2300002: SM_Ampoule
+    2300004: SM_Lampe
+    3300000: Cylinder003
+    3300002: SM_Ampoule
+    3300004: SM_Lampe
+    4300000: SM_Lampe
+    4300002: Cylinder003
+    4300004: SM_Ampoule
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 57899c1734bc8c64da6fe8d8af983a22, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
