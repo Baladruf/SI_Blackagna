@@ -8,6 +8,7 @@ TagManager:
   - Shot
   - Punch
   - ExtWall
+  - DoNotRumble
   layers:
   - Default
   - TransparentFX
