@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4138951150289180}
   - component: {fileID: 33129770926283350}
   - component: {fileID: 23216548206969340}
+  - component: {fileID: 65855534975682572}
   m_Layer: 0
   m_Name: SM_Chaise
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700789775442612}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.9444697, y: 0.5000001, z: 2.9896648}
+  m_LocalPosition: {x: 0, y: 0, z: 3.87}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700789775442612}
   m_Mesh: {fileID: 4300000, guid: 17cb54f7a3611c349a3ccbcfd4ac442f, type: 3}
+--- !u!65 &65855534975682572
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700789775442612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4979275, y: 0.39185756, z: 0.9385445}
+  m_Center: {x: 0.0357304, y: 0, z: 0.46927226}
