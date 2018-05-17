@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     public int rankBonus { get; private set; }
     [SerializeField] float bonus = 0.5f;
 
-    [SerializeField] float forcePropulsion;
-    [SerializeField] float forcePropulsionUp;
+    [SerializeField] float forcePropulsion = 25;
+    [SerializeField] float ralentir = 5;
 
     public bool isHumain { get; private set; }
 
@@ -74,6 +74,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity != Vector3.zero)
+        {
+            rb.velocity = new Vector3(Mathf.Max(0, rb.velocity.x - (ralentir * Time.deltaTime)), 0, Mathf.Max(0, rb.velocity.z - (ralentir * Time.deltaTime)));
+        }
+
         var cadavre = GameManager.Instance.Cadavre.cadavreWithPlayer;
         if(ReferenceEquals(this, cadavre))
         {
@@ -102,14 +107,14 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
-        else if (collision.transform.tag == "ExtWall")
+        /*else if (collision.transform.tag == "ExtWall")
         {
             StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
         }
         else if(collision.transform.tag != "DoNotRumble")
         {
             StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -166,10 +171,12 @@ public class PlayerController : MonoBehaviour
                 life = maxLife;
                 transform.parent = manager.playersControllers;
                 meshObject.GetComponent<Renderer>().enabled = true;
-                transform.forward = (player.transform.position - manager.Cadavre.transform.position).normalized.WithY(0);
-                GetComponent<Rigidbody>().AddForce(((player.transform.position - transform.position).normalized * forcePropulsion).WithY(forcePropulsionUp), ForceMode.VelocityChange);
+
                 if(player != null)
                 {
+                    transform.forward = (player.transform.position - manager.Cadavre.transform.position).normalized.WithY(0);
+                    print(-transform.forward * forcePropulsion);
+                    rb.velocity = -transform.forward * forcePropulsion;
                     player.action.colliderCone.SetCadavrePlayer();
                 }
             }
