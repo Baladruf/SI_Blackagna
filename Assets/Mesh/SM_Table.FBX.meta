@@ -33,7 +33,12 @@ ModelImporter:
     4300004: Pied2
     4300006: Pied3
     4300008: Pied4
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: d790eb99110cf034e8a7e380d19fa4ad, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
