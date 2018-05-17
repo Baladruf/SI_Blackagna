@@ -26,6 +26,7 @@ public class Ruche : MonoBehaviour {
         if(life <= 0)
         {
             isDestroy = true;
+            GameManager.Instance.RucheCount();
             player.InitInvincible();
             for(int i = 0; i < GameManager.Instance.players.Length; i++)
             {

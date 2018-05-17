@@ -14,6 +14,8 @@ public class PlayerController : PlayerAbstrait
     [SerializeField] float timeDead = 2;
     [SerializeField] float penaliteDead = 1;
     [SerializeField] float maxTimeDead = 10;
+    public Color colorPlayer {get; private set;}
+    //public Color colorPlayer;
 
     protected override void Awake()
     {
@@ -31,12 +33,14 @@ public class PlayerController : PlayerAbstrait
         player = ReInput.players.GetPlayer(id);
         alien_trail = transform.GetChild(1).GetComponent<TrailRenderer>();
         alien_trail.colorGradient = alien_color_gradient;
+        colorPlayer = alien_color_gradient.Evaluate(0);
     }
 
     // Update is called once per frame
     void Update()
     {
         TakeDamage(dot * Time.deltaTime);
+        alien_trail.widthMultiplier = 1 - (life / maxLife);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -93,6 +97,7 @@ public class PlayerController : PlayerAbstrait
             life = maxLife;
             transform.position = ruchePlayer.spawnPlayer.position;
             Actif_Inactif(true);
+            isDead = false;
             if (timeDead + penaliteDead < maxTimeDead)
                 timeDead += penaliteDead;
             else

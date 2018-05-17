@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public Transform playersControllers;
     public Cadavre cadavre;
     public PlayerController[] players;
+    private int countRuche = 4;
 
     private void Awake()
     {
@@ -25,5 +26,27 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         gameStarted = true;
+    }
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void Update()
+    {
+        if(countRuche <= 1){
+            int monsterRestant = 0;
+            for(int i = 0; i < players.Length; i++){
+                if(!players[i].isDead){
+                    monsterRestant++;
+                }
+            }
+            if(monsterRestant == 1){
+                //fin game
+            }
+        }
+    }
+
+    public void RucheCount(){
+        countRuche--;
     }
 }
