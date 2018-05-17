@@ -5,12 +5,13 @@ using UnityEngine;
 public class Shot : MonoBehaviour {
 
     [SerializeField] float speed = 8;
+    [SerializeField] float tempsDExistance = 5;
     private Rigidbody rigidbodyShot;
 
     private void Awake()
     {
         rigidbodyShot = GetComponent<Rigidbody>();
-        Destroy(gameObject, 5);
+        Destroy(gameObject, tempsDExistance);
     }
 
     public void SetDirection(Vector3 forward)

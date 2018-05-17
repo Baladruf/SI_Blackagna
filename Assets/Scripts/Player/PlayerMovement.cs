@@ -7,7 +7,7 @@ using Rewired;
 public class PlayerMovement : MonoBehaviour {
 
     [System.NonSerialized] 
-    public PlayerController playerController; 
+    public PlayerAbstrait playerController; 
     public float moveSpeed; 
     [Range(0, 1)]
     public float aimDeadZone = 0.4f;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (!GameManager.gameStarted && !playerController.isDead) {
+        if (!GameManager.gameStarted || playerController.isDead) {
             return;
         }
         AimUpdate();
@@ -33,28 +33,34 @@ public class PlayerMovement : MonoBehaviour {
             return;
         }
 
-        var cadavre = GameManager.Instance.Cadavre;
-        if (!ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
-            playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
-        else
+        if(playerController.isHumain && ((Cadavre)playerController).cadavreWithPlayer == null)
         {
-            cadavre.rigidbodyCadavre.MovePosition(cadavre.transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
-            if(transform.localPosition != Vector3.zero)
-            {
-                transform.localPosition = Vector3.zero;
-            }
+            return;
         }
+
+        playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
+
     }
 
     void AimUpdate() {
-        if (!ReferenceEquals(playerController, GameManager.Instance.Cadavre.cadavreWithPlayer))
+
+        if (isStun)
         {
-            print("la aussi");
-            if (Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("MoveVertical")) < aimDeadZone)
+            return;
+        }
+
+        if (playerController.isHumain)
+        {
+            if (((Cadavre)playerController).cadavreWithPlayer == null)
             {
                 return;
             }
-            Vector3 lookDirection = new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")).normalized;
+
+            if (Mathf.Abs(playerController.player.GetAxis("AimHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("AimVertical")) < aimDeadZone)
+            {
+                return;
+            }
+            Vector3 lookDirection = new Vector3(playerController.player.GetAxis("AimHorizontal"), 0, playerController.player.GetAxis("AimVertical")).normalized;
             if (lookDirection != Vector3.zero)
             {
                 playerController.SetPlayerForward(lookDirection);
@@ -62,18 +68,17 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            /*if (Mathf.Abs(playerController.player.GetAxis("AimHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("AimVertical")) < aimDeadZone)
+            if (Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")) < aimDeadZone && Mathf.Abs(playerController.player.GetAxis("MoveVertical")) < aimDeadZone)
             {
                 return;
-            }*/
-            print("active");
-            Vector3 lookDirection = new Vector3(playerController.player.GetAxis("AimHorizontal"), 0, playerController.player.GetAxis("AimVertical")).normalized;
+            }
+            Vector3 lookDirection = -new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")).normalized;
             if (lookDirection != Vector3.zero)
             {
-                var cadavre = GameManager.Instance.Cadavre;
-                cadavre.transform.GetChild(0).forward = lookDirection;
+                playerController.SetPlayerForward(lookDirection);
             }
         }
+
     }
 
     void OutOfBoundsUpdate() {
@@ -85,5 +90,10 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Stun() {
         isStun = true;
+    }
+
+    public void LeftStun()
+    {
+        isStun = false;
     }
 }

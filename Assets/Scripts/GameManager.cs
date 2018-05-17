@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
     public static bool gameStarted = false;
     public Transform playersControllers;
-    public Cadavre Cadavre;
+    public Cadavre cadavre;
     public PlayerController[] players;
 
     private void Awake()
@@ -19,15 +19,11 @@ public class GameManager : MonoBehaviour {
         {
             players[i] = playersControllers.GetChild(i).GetComponent<PlayerController>();
         }
+        cadavre = playersControllers.GetChild(4).GetComponent<Cadavre>();
     }
 
     private void Start()
     {
         gameStarted = true;
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

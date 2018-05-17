@@ -7,41 +7,28 @@ public class ColliderCone : MonoBehaviour {
     [System.NonSerialized]
     public PlayerAction action;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Food")
         {
             var food = other.GetComponent<Food>();
             food.Eat();
-            action.playerController.RecupFood();
+            ((PlayerController)(action.playerController)).RecupFood();
         }else if(other.tag == "Cadavre")
         {
-            var cadavre = GameManager.Instance.Cadavre;
-            if(cadavre.cadavreWithPlayer == null)
+            var cadavre = other.GetComponent<Cadavre>();
+            if(cadavre != null && cadavre.cadavreWithPlayer == null)
             {
-                SetCadavrePlayer();
+                SetCadavrePlayer(cadavre);
             }
         }
     }
 
-    public void SetCadavrePlayer()
+    public void SetCadavrePlayer(Cadavre cadavre)
     {
-        action.playerController.meshObject.GetComponent<MeshRenderer>().enabled = false;
-        //transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-        action.playerController.transform.parent = GameManager.Instance.Cadavre.transform;//.GetChild(0);
-        action.playerController.transform.localPosition = Vector3.zero;
-        action.playerController.transform.localRotation = Quaternion.identity;
-        GameManager.Instance.Cadavre.cadavreWithPlayer = action.playerController;
-        action.playerController.SetHumainLife();
+        cadavre.cadavreWithPlayer = (PlayerController)action.playerController;
+        cadavre.player = action.playerController.player;
+        cadavre.SetHumainLife();
+        action.playerController.Actif_Inactif(false);
     }
 }

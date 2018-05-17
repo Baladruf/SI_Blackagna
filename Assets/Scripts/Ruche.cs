@@ -18,7 +18,8 @@ public class Ruche : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        if (ReferenceEquals(GameManager.Instance.Cadavre.cadavreWithPlayer, player))
+        var manager = GameManager.Instance;
+        if (ReferenceEquals(manager.cadavre.cadavreWithPlayer, player))
             return;
 
         life -= damage;

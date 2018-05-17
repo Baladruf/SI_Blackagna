@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour {
 
     [System.NonSerialized]
-    public PlayerController playerController;
+    public PlayerAbstrait playerController;
     [System.NonSerialized]
     public ColliderCone colliderCone;
     [SerializeField] float delayAttack = 0.5f;
@@ -19,23 +19,36 @@ public class PlayerAction : MonoBehaviour {
 
 
 
-    private void Awake()
+    private void Start()
     {
-        coneAttack = transform.GetChild(0).GetComponent<Collider>();
-        coneAttack.enabled = false;
-        (colliderCone = coneAttack.GetComponent<ColliderCone>()).action = this;
+        if (!playerController.isHumain)
+        {
+            coneAttack = transform.GetChild(0).GetComponent<Collider>();
+            coneAttack.enabled = false;
+            (colliderCone = coneAttack.GetComponent<ColliderCone>()).action = this;
+        }
     }
 
     // Update is called once per frame
     void Update () {
         Debug.DrawRay(transform.position, transform.forward * 5,Color.red);
-        var cadavre = GameManager.Instance.Cadavre;
-        if (ReferenceEquals(cadavre.cadavreWithPlayer, playerController))
+
+        if (playerController.isDead)
         {
+            return;
+        }
+
+        if (playerController.isHumain)
+        {
+            if(((Cadavre)playerController).cadavreWithPlayer == null)
+            {
+                return;
+            }
+
             if (playerController.player.GetButton("RightTrigger") && cooldownShot)
             {
                 cooldownShot = false;
-                StartCoroutine(TimeShot(cadavre));
+                StartCoroutine(TimeShot());
             }
         }
         else
@@ -57,13 +70,13 @@ public class PlayerAction : MonoBehaviour {
         cooldownPunch = true;
     }
 
-    private IEnumerator TimeShot(Cadavre cadavre)
+    private IEnumerator TimeShot()
     {
         int i;
         for(i = 0; i < nbMunitionByShot; i++)
         {
-            var shot = Instantiate(cadavre.shotPrefab, cadavre.posShot.position, Quaternion.identity);
-            shot.GetComponent<Shot>().SetDirection(cadavre.transform.GetChild(0).forward);
+            var shot = Instantiate(playerController.shotPrefab, playerController.posShot.position, Quaternion.identity);
+            shot.GetComponent<Shot>().SetDirection(transform.forward);
             yield return new WaitForSeconds(delayBetweenShot);
         }
         yield return new WaitForSeconds(delayShot - (i * delayBetweenShot));
