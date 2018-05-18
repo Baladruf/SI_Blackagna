@@ -34,6 +34,7 @@ public class PlayerController : PlayerAbstrait
         alien_trail = transform.GetChild(1).GetComponent<TrailRenderer>();
         alien_trail.colorGradient = alien_color_gradient;
         colorPlayer = alien_color_gradient.Evaluate(0);
+        rendererMesh = meshObject.transform.GetChild(1).GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -80,7 +81,7 @@ public class PlayerController : PlayerAbstrait
     public override void TakeDamage(float damage, PlayerController player = null)
     {
         life -= damage;
-        if (life < 0)
+        if (life < 0 && !isDead)
         {
             isDead = true;
             Actif_Inactif(false);

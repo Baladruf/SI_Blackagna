@@ -80,6 +80,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
     {
         if (actif)
         {
+            animator.enabled = true;
             rendererMesh.enabled = true;
             colliderPlayer.enabled = true;
             rb.useGravity = true;
@@ -95,6 +96,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
             }
             else
             {
+                animator.enabled = false;
                 rendererMesh.enabled = false;
                 rb.useGravity = false;
                 colliderPlayer.enabled = false;
@@ -107,6 +109,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
     protected IEnumerator AnimationDeath()
     {
         yield return new WaitForSeconds(3.15f);
+        animator.enabled = false;
         rendererMesh.enabled = false;
         rb.useGravity = false;
         colliderPlayer.enabled = false;
