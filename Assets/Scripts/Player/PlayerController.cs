@@ -94,7 +94,7 @@ public class PlayerController : PlayerAbstrait
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(timeDead);
+        yield return new WaitForSeconds(3.15f+timeDead);
         if (!ruchePlayer.isDestroy)
         {
             life = maxLife;

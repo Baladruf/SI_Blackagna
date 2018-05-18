@@ -227,11 +227,6 @@ Prefab:
       propertyPath: ruchePlayer
       value: 
       objectReference: {fileID: 1642875890}
-    - target: {fileID: 137682608234446184, guid: 7ca4e3dbbf0fc0d4883b09abc4f8a3fc,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 639d13c3cc6b2794bae0b955f1c49505, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ca4e3dbbf0fc0d4883b09abc4f8a3fc, type: 2}
   m_IsPrefabParent: 0
@@ -985,11 +980,6 @@ Prefab:
       propertyPath: ruchePlayer
       value: 
       objectReference: {fileID: 802767220}
-    - target: {fileID: 137981263646094800, guid: 9350d50bee1d573428737cbaafd8f0ed,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3cec75e1e4b7a564181d011e6394898e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9350d50bee1d573428737cbaafd8f0ed, type: 2}
   m_IsPrefabParent: 0
@@ -1490,11 +1480,6 @@ Prefab:
       propertyPath: ruchePlayer
       value: 
       objectReference: {fileID: 1885325615}
-    - target: {fileID: 137447445385972374, guid: 4ada992e361ca2c439c09ce1846689a3,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 670b879a4384a714cb8eb5abe0d6ddee, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ada992e361ca2c439c09ce1846689a3, type: 2}
   m_IsPrefabParent: 0
@@ -1630,12 +1615,12 @@ Prefab:
     - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
         type: 2}
       propertyPath: maxHumainLife
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
         type: 2}
       propertyPath: recupHpHumain
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
         type: 2}
@@ -1646,6 +1631,36 @@ Prefab:
         type: 2}
       propertyPath: delayBetweenShot
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: body_mesh
+      value: 
+      objectReference: {fileID: 1851487292}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: head_mesh
+      value: 
+      objectReference: {fileID: 926854405}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: timeHitColor
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: takedamage.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: takedamage.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287062578388808, guid: b0a1cd1e70609464b9041bdee95293eb,
+        type: 2}
+      propertyPath: takedamage.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0a1cd1e70609464b9041bdee95293eb, type: 2}
@@ -2147,6 +2162,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 685f119784f682141807b92c3689a4c7, type: 2}
   m_IsPrefabParent: 0
+--- !u!137 &926854405 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 137583567438988166, guid: b0a1cd1e70609464b9041bdee95293eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 608481517}
 --- !u!1001 &931991560
 Prefab:
   m_ObjectHideFlags: 0
@@ -2605,7 +2625,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077458983}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb1f14375166a1f4d89a6a8f3f0b9f9f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4679,6 +4699,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 685f119784f682141807b92c3689a4c7, type: 2}
   m_IsPrefabParent: 0
+--- !u!137 &1851487292 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 137234533443845752, guid: b0a1cd1e70609464b9041bdee95293eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 608481517}
 --- !u!1001 &1864368786
 Prefab:
   m_ObjectHideFlags: 0
@@ -4723,11 +4748,6 @@ Prefab:
       propertyPath: ruchePlayer
       value: 
       objectReference: {fileID: 1704144472}
-    - target: {fileID: 137323897564317546, guid: f650c2cb05fbdf34d99c905815738016,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a0407b9404f2dc747a99c95fcbba38ba, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f650c2cb05fbdf34d99c905815738016, type: 2}
   m_IsPrefabParent: 0

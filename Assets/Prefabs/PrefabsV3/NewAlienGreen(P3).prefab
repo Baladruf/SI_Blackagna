@@ -1139,9 +1139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa611784af1c2442b9ee880f0a92e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 11
   aimDeadZone: 0.4
-  bonusSpeed: 0.5
+  bonusSpeed: 1
 --- !u!114 &114270874848161468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef54c72a76e42b4f93a3b6b2b592d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 3
   Cooldown: 1
   wave: {fileID: 198626095665310238}
 --- !u!114 &114832231897322782
@@ -1179,8 +1179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshObject: {fileID: 1880634121632936}
-  delayInvicibleRucheDestry: 5
-  bonus: 0.5
+  delayInvicibleRucheDestry: 3.1
+  bonus: 1
   posShot: {fileID: 0}
   shotPrefab: {fileID: 1871388649005018, guid: a12b931d1a95b19489dcd1e47ef21aac, type: 2}
   alien_color_gradient:
@@ -1214,13 +1214,13 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   id: 3
   ruchePlayer: {fileID: 0}
-  maxLife: 50
+  maxLife: 25
   dot: 1
-  foodRecup: 15
-  damagaShot: 20
-  timeDead: 2
-  penaliteDead: 1
-  maxTimeDead: 10
+  foodRecup: 5
+  damagaShot: 1
+  timeDead: 3
+  penaliteDead: 1.5
+  maxTimeDead: 12
 --- !u!114 &114890336815310914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1247,7 +1247,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.95
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136753114422388378
 CapsuleCollider:
@@ -1258,7 +1258,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -8117,7 +8117,7 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
