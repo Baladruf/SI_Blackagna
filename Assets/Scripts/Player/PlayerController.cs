@@ -15,6 +15,7 @@ public class PlayerController : PlayerAbstrait
     [SerializeField] float penaliteDead = 1;
     [SerializeField] float maxTimeDead = 10;
     public Color colorPlayer {get; private set;}
+    private Coroutine corouSave = null;
     //public Color colorPlayer;
 
     protected override void Awake()
@@ -56,14 +57,21 @@ public class PlayerController : PlayerAbstrait
         {
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
-        /*else if (collision.transform.tag == "ExtWall")
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+         if (corouSave == null)
         {
-            StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
+            if (collision.transform.tag == "ExtWall")
+            {
+                corouSave = StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
+            }
+            else if (collision.transform.tag != "DoNotRumble")
+            {
+                corouSave = StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
+            }
         }
-        else if(collision.transform.tag != "DoNotRumble")
-        {
-            StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
-        }*/
     }
 
     public override bool Equals(object other)
@@ -94,7 +102,7 @@ public class PlayerController : PlayerAbstrait
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(3.15f+timeDead);
+        yield return new WaitForSeconds(3.15f + timeDead);
         if (!ruchePlayer.isDestroy)
         {
             life = maxLife;
@@ -121,7 +129,7 @@ public class PlayerController : PlayerAbstrait
 
     IEnumerator Rumble(float leftMotor, float rightMotor, float duration)
     {
-        Rewired.Joystick joy = player.controllers.Joysticks[id];
+        Rewired.Joystick joy = player.controllers.Joysticks[0];
         joy.StopVibration();
 
         joy.SetVibration(0, leftMotor, true);
@@ -130,6 +138,7 @@ public class PlayerController : PlayerAbstrait
         yield return new WaitForSeconds(duration);
 
         joy.StopVibration();
+        corouSave = null;
     }
 
     public IEnumerator TimeStun(float delayStun)

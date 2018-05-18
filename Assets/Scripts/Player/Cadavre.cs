@@ -36,6 +36,11 @@ public class Cadavre : PlayerAbstrait {
 
     }
 
+    private void Start()
+    {
+        animator = meshObject.transform.GetChild(1).GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update () {
         life = Mathf.Min(maxHumainLife, life + (recupHpHumain * Time.deltaTime));

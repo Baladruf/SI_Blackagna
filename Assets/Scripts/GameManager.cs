@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -11,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public Cadavre cadavre;
     public PlayerController[] players;
     private int countRuche = 4;
+    [SerializeField] Text textVictoire;
+    [SerializeField] float delayVictory = 3;
 
     private void Awake()
     {
@@ -35,18 +39,28 @@ public class GameManager : MonoBehaviour {
     {
         if(countRuche <= 1){
             int monsterRestant = 0;
+            int rank = 0;
             for(int i = 0; i < players.Length; i++){
                 if(!players[i].isDead){
+                    rank = i;
                     monsterRestant++;
                 }
             }
             if(monsterRestant == 1){
-                //fin game
+                textVictoire.gameObject.SetActive(true);
+                textVictoire.text = "Le joueur " + (rank + 1) + " a survecu !";
+                StartCoroutine(ChangeScene());
             }
         }
     }
 
     public void RucheCount(){
         countRuche--;
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(delayVictory);
+        //SceneManager.LoadScene("Scenes/");
     }
 }
