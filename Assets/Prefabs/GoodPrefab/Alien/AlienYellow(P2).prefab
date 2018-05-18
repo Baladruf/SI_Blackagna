@@ -543,8 +543,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   id: 2
   ruchePlayer: {fileID: 0}
-  maxLife: 20
-  dot: 0
+  maxLife: 50
+  dot: 1
   foodRecup: 15
   damagaShot: 20
   timeDead: 2
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef54c72a76e42b4f93a3b6b2b592d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 2
   Cooldown: 1
   wave: {fileID: 198128470920506032}
 --- !u!114 &114783767891135542

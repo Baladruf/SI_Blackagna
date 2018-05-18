@@ -549,7 +549,7 @@ MonoBehaviour:
   id: 0
   ruchePlayer: {fileID: 0}
   maxLife: 50
-  dot: 0.5
+  dot: 1
   foodRecup: 15
   damagaShot: 20
   timeDead: 2
