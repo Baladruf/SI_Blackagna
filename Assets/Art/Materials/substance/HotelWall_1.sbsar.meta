@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 33f0bcba06e937f419dcb310ad891827
-timeCreated: 1526633247
+guid: f19a539979e7c2a40b6361759a5f0921
+timeCreated: 1526633249
 licenseType: Free
 SubstanceImporter:
   externalObjects: {}
   serializedVersion: 5
   materialInstances:
   - serializedVersion: 16
-    name: Complete01
-    prototypeName: Complete01
+    name: Final_HotelWall_1
+    prototypeName: Final_HotelWall_1
     shaderName: 
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: _NORMALMAP _PARALLAXMAP
+    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
     renderQueue: -1
     lightmapFlags: 4
     inputs:
@@ -25,45 +25,21 @@ SubstanceImporter:
         stringvalue: 
     - name: $randomseed
       value:
-        scalar[0]: 0
+        scalar[0]: 5420
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
         stringvalue: 
-    - name: WoodTile_X_Amount
+    - name: Dirt
       value:
-        scalar[0]: 1
+        scalar[0]: 0.531
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
         stringvalue: 
-    - name: WoodTile_Y_Amount
-      value:
-        scalar[0]: 18
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: WoodTiles_Interstice
-      value:
-        scalar[0]: 0.4
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: BigHole_Toggle
-      value:
-        scalar[0]: 1
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: BigHole_Randomize
+    - name: Destruction
       value:
         scalar[0]: 0
         scalar[1]: 0
@@ -71,23 +47,15 @@ SubstanceImporter:
         scalar[3]: 0
         texture: {instanceID: 0}
         stringvalue: 
-    - name: BigHole_Offset
+    - name: Dirt_Wall
       value:
-        scalar[0]: 0
+        scalar[0]: 0.134
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
         stringvalue: 
-    - name: BigHole_Transform_matrix
-      value:
-        scalar[0]: 1
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 1
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: Flap_Toggle
+    - name: Cracks_Wall
       value:
         scalar[0]: 1
         scalar[1]: 0
@@ -95,33 +63,17 @@ SubstanceImporter:
         scalar[3]: 0
         texture: {instanceID: 0}
         stringvalue: 
-    - name: Flap_Offset
+    - name: Destruction_Wall
+      value:
+        scalar[0]: 0.286
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+        stringvalue: 
+    - name: Dirt_Brick
       value:
         scalar[0]: 0
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: SmallRips_Randomize
-      value:
-        scalar[0]: 0
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: MediumRips_Randomize
-      value:
-        scalar[0]: 1
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-        stringvalue: 
-    - name: SmallCracks_Randomize
-      value:
-        scalar[0]: 3
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -130,7 +82,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 1, y: 1}
+      scale: {x: 9.45, y: 1}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -139,7 +91,7 @@ SubstanceImporter:
       texEnvs:
       - _BumpMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       - _DetailAlbedoMap:
           texture: {instanceID: 0}
@@ -155,61 +107,71 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _EmissionMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       - _MainTex:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       - _MetallicGlossMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       - _OcclusionMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       - _ParallaxMap:
           texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
+          scale: {x: 9.45, y: 1}
           offset: {x: 0, y: 0}
       floats:
       - _BumpScale: 1
       - _Cutoff: 0.5
       - _DetailNormalMapScale: 1
       - _DstBlend: 0
-      - _GlossMapScale: 1
+      - _GlossMapScale: 0.407
       - _Glossiness: 0.5
       - _GlossyReflections: 1
       - _Metallic: 0
       - _Mode: 0
       - _OcclusionStrength: 1
-      - _Parallax: 0.02
+      - _Parallax: 0.08
       - _SmoothnessTextureChannel: 0
       - _SpecularHighlights: 1
       - _SrcBlend: 1
       - _UVSec: 0
       - _ZWrite: 1
       colors:
-      - _Color: {r: 1, g: 1, b: 1, a: 1}
+      - _Color: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     textureParameters:
-    - name: Complete01_basecolor
+    - name: Final_HotelWall_1_basecolor
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Complete01_normal
+    - name: Final_HotelWall_1_normal
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Complete01_height
+    - name: Final_HotelWall_1_metallic
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Final_HotelWall_1_ao
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: Complete01_AO
+    - name: Final_HotelWall_1_height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Final_HotelWall_1_roughness
       alphaSource: 0
       filterMode: 1
       aniso: 1
@@ -217,16 +179,19 @@ SubstanceImporter:
     textureAssignments:
     - shaderProp: _MainTex
       material: {instanceID: 0}
-      baseUID: 391978395
+      baseUID: 836296559
     - shaderProp: _BumpMap
       material: {instanceID: 0}
-      baseUID: 391978393
+      baseUID: 836296557
+    - shaderProp: _MetallicGlossMap
+      material: {instanceID: 0}
+      baseUID: 811001620
     - shaderProp: _OcclusionMap
       material: {instanceID: 0}
-      baseUID: 382101512
+      baseUID: 811001666
     - shaderProp: _ParallaxMap
       material: {instanceID: 0}
-      baseUID: 382075958
+      baseUID: 811002030
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
