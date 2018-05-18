@@ -55,13 +55,15 @@ public class PlayerController : PlayerAbstrait
 
         if(collision.transform.tag == "Shot")
         {
+            //Modif de la couleur
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-         if (corouSave == null)
+        //check manette branchée
+         if (corouSave == null && player.isPlaying)
         {
             if (collision.transform.tag == "ExtWall")
             {

@@ -222,9 +222,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4196464122022268}
-  - component: {fileID: 135448469184489432}
   - component: {fileID: 54673207115275978}
   - component: {fileID: 114270874848161468}
+  - component: {fileID: 136404288444388762}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Punch
@@ -569,7 +569,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700859996966528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.559, y: 1.5, z: -0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -637,7 +637,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880634121632936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4196464122022268}
@@ -1237,18 +1237,19 @@ MonoBehaviour:
   nbMunitionByShot: 5
   delayBetweenShot: 0.2
   timeCollider: 0.2
---- !u!135 &135448469184489432
-SphereCollider:
+--- !u!136 &136404288444388762
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576765657116068}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.95
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.65503716
+  m_Height: 2.8927054
+  m_Direction: 2
+  m_Center: {x: 0.009994268, y: 0, z: 1.1762173}
 --- !u!136 &136753114422388378
 CapsuleCollider:
   m_ObjectHideFlags: 1
