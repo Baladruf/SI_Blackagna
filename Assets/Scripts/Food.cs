@@ -21,8 +21,9 @@ public class Food : MonoBehaviour {
         if(nbFood <= 0)
         {
             colliderFood.enabled = false;
-            SpawnerFood.instance.BackToTheList(spFood);
-            Destroy(gameObject);
+            SpawnerFood.instance.BackToTheList(this);
+            print("food finish");
+            //Destroy(gameObject);
         }
     }
 }
