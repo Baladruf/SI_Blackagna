@@ -39,8 +39,15 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         //print();
-        if(!playerController.isHumain)
+        if (!playerController.isHumain)
+        {
             playerController.animator.SetFloat("move", Mathf.Max(Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")), Mathf.Abs(playerController.player.GetAxis("MoveVertical"))));
+        }
+        else
+        {
+            float speedAnime = Mathf.Max(Mathf.Abs(playerController.player.GetAxis("MoveHorizontal")), Mathf.Abs(playerController.player.GetAxis("MoveVertical")));
+            playerController.animator.SetFloat("Speed", speedAnime <= 0.01f ? 0 : 1);
+        }
         playerController.rb.MovePosition(transform.position + new Vector3(playerController.player.GetAxis("MoveHorizontal"), 0, playerController.player.GetAxis("MoveVertical")) * (moveSpeed + (bonusSpeed * playerController.rankBonus)) * Time.deltaTime);
 
     }
