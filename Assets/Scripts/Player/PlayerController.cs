@@ -72,19 +72,23 @@ public class PlayerController : PlayerAbstrait
 
     private void OnCollisionStay(Collision collision)
     {
-        /*
+
         //check manette branchée
-         if (corouSave == null && player.isPlaying)
+        try
         {
-            if (collision.transform.tag == "ExtWall")
+            if (corouSave == null && player.isPlaying)
             {
-                corouSave = StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
+                if (collision.transform.tag == "ExtWall")
+                {
+                    corouSave = StartCoroutine(Rumble(1.0f, 0.8f, 0.2f));
+                }
+                else if (collision.transform.tag != "DoNotRumble")
+                {
+                    corouSave = StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
+                }
             }
-            else if (collision.transform.tag != "DoNotRumble")
-            {
-                corouSave = StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
-            }
-        }*/
+        }
+        catch(System.Exception e) { }
     }
 
     public override bool Equals(object other)
