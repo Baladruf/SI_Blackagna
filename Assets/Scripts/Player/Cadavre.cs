@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Cadavre : PlayerAbstrait {
 
@@ -23,6 +24,7 @@ public class Cadavre : PlayerAbstrait {
     private Color originalColor;
     private Coroutine hitCoroutine;
     [SerializeField] float timeHitColor = 0.2f;
+    public ParticleSystem particleEnter;
 
     protected override void Awake()
     {
@@ -72,7 +74,10 @@ public class Cadavre : PlayerAbstrait {
                 cadavreWithPlayer.movement.Stun();
                 StartCoroutine(cadavreWithPlayer.TimeStun(delayStun));
 
+
+                MakeSplashBlood();
                 cadavreWithPlayer = player;
+
                 this.player = player.player;
                 player.Actif_Inactif(false);
             }
@@ -121,5 +126,9 @@ public class Cadavre : PlayerAbstrait {
         hitCoroutine = null;
     }
 
+    public void MakeSplashBlood()
+    {
+        particleEnter.Play();
+    }
 
 }

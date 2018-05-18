@@ -14,9 +14,15 @@ public class PlayerController : PlayerAbstrait
     [SerializeField] float timeDead = 2;
     [SerializeField] float penaliteDead = 1;
     [SerializeField] float maxTimeDead = 10;
-    public Color colorPlayer {get; private set;}
+    public Color colorPlayer;
     private Coroutine corouSave = null;
-    //public Color colorPlayer;
+
+    //mesvariablescrados
+    private Color tintOriginal;
+    public Color tintHit;
+    public SkinnedMeshRenderer larve_sm;
+    public float timeTintHit;
+    private Coroutine TintHitCoroutine = null;
 
     protected override void Awake()
     {
@@ -25,6 +31,7 @@ public class PlayerController : PlayerAbstrait
         isHumain = false;
         //isDead = false;
         ruchePlayer.player = this;
+        tintOriginal = larve_sm.material.color;
     }
 
 
@@ -34,7 +41,7 @@ public class PlayerController : PlayerAbstrait
         player = ReInput.players.GetPlayer(id);
         alien_trail = transform.GetChild(1).GetComponent<TrailRenderer>();
         alien_trail.colorGradient = alien_color_gradient;
-        colorPlayer = alien_color_gradient.Evaluate(0);
+        //colorPlayer = alien_color_gradient.Evaluate(0);
         rendererMesh = meshObject.transform.GetChild(1).GetComponent<Renderer>();
     }
 
@@ -55,13 +62,17 @@ public class PlayerController : PlayerAbstrait
 
         if(collision.transform.tag == "Shot")
         {
-            //Modif de la couleur
+            if (TintHitCoroutine == null)
+            {
+                TintHitCoroutine = StartCoroutine(HitTint());
+            }
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
+        /*
         //check manette branchée
          if (corouSave == null && player.isPlaying)
         {
@@ -73,7 +84,7 @@ public class PlayerController : PlayerAbstrait
             {
                 corouSave = StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
             }
-        }
+        }*/
     }
 
     public override bool Equals(object other)
@@ -148,4 +159,16 @@ public class PlayerController : PlayerAbstrait
         yield return new WaitForSeconds(delayStun);
         movement.LeftStun();
     }
+
+
+    private IEnumerator HitTint()
+    {
+        larve_sm.material.color = tintHit;
+        yield return new WaitForSeconds(timeTintHit);
+        larve_sm.material.color = tintOriginal;
+
+        TintHitCoroutine = null;
+    }
+
+
 }

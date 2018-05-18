@@ -16,6 +16,7 @@ public class PlayerAction : MonoBehaviour {
     private bool cooldownShot = true;
     private Collider coneAttack;
     [SerializeField] float timeCollider = 0.2f;
+    public ParticleSystem muzzleFlash;
 
 
 
@@ -49,6 +50,7 @@ public class PlayerAction : MonoBehaviour {
             {
                 //playerController.animator.SetTrigger("attack");
                 cooldownShot = false;
+                muzzleFlash.Play();
                 StartCoroutine(TimeShot());
             }
         }

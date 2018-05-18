@@ -10,18 +10,32 @@ public class Ruche : MonoBehaviour {
     [System.NonSerialized]
     public PlayerController player;
     [SerializeField] int damage = 5;
+    private MeshRenderer SM_oeuf;
+    public Color hitTintColor;
+    private Color OriginalTintColor;
+    public float HitTintTime = 1f;
+
+    private Coroutine HitTintChange;
 
     private void Awake()
     {
         isDestroy = false;
+        SM_oeuf = transform.GetChild(0).GetComponent<MeshRenderer>();
+        OriginalTintColor = SM_oeuf.material.color;
     }
 
     public void TakeDamage(int damage)
     {
+
+
         var manager = GameManager.Instance;
         if (ReferenceEquals(manager.cadavre.cadavreWithPlayer, player))
             return;
 
+        if (HitTintChange == null)
+        {
+            HitTintChange = StartCoroutine(HitTintColor());
+        }
         life -= damage;
         if(life <= 0)
         {
@@ -44,5 +58,13 @@ public class Ruche : MonoBehaviour {
         {
             TakeDamage(damage);
         }
+    }
+
+    private IEnumerator HitTintColor()
+    {
+        SM_oeuf.material.color = hitTintColor;
+        yield return new WaitForSeconds(HitTintTime);
+        SM_oeuf.material.color = OriginalTintColor;
+        HitTintChange = null;
     }
 }
