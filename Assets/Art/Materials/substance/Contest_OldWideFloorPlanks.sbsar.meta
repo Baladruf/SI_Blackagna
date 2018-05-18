@@ -43,7 +43,7 @@ SubstanceImporter:
       texEnvs:
       - _BumpMap:
           texture: {instanceID: 0}
-          scale: {x: 9, y: 1}
+          scale: {x: 9, y: 9}
           offset: {x: 0, y: 0}
       - _DetailAlbedoMap:
           texture: {instanceID: 0}
@@ -67,7 +67,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _MetallicGlossMap:
           texture: {instanceID: 0}
-          scale: {x: 9, y: 1}
+          scale: {x: 9, y: 9}
           offset: {x: 0, y: 0}
       - _OcclusionMap:
           texture: {instanceID: 0}
@@ -75,7 +75,7 @@ SubstanceImporter:
           offset: {x: 0, y: 0}
       - _ParallaxMap:
           texture: {instanceID: 0}
-          scale: {x: 9, y: 1}
+          scale: {x: 9, y: 9}
           offset: {x: 0, y: 0}
       floats:
       - _BumpScale: 1
@@ -95,7 +95,7 @@ SubstanceImporter:
       - _UVSec: 0
       - _ZWrite: 1
       colors:
-      - _Color: {r: 1, g: 1, b: 1, a: 1}
+      - _Color: {r: 0.64705884, g: 0.64705884, b: 0.64705884, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     textureParameters:
     - name: Wood_OldWideFloorPlanks_basecolor
