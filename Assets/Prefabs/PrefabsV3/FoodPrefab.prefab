@@ -107,5 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c98ccfedb685f49ba994bda2348f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minNbFood: 5
-  maxNbFood: 15
+  minNbFood: 3
+  maxNbFood: 5
