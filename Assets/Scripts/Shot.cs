@@ -16,6 +16,7 @@ public class Shot : MonoBehaviour {
 
     public void SetDirection(Vector3 forward)
     {
+        transform.forward = forward;
         rigidbodyShot.velocity = forward * speed;
     }
 

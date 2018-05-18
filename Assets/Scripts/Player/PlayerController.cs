@@ -53,8 +53,10 @@ public class PlayerController : PlayerAbstrait
     // Update is called once per frame
     void Update()
     {
-        TakeDamage(dot * Time.deltaTime);
-        alien_trail.widthMultiplier = life / maxLife;
+        if(isActif){
+            TakeDamage(dot * Time.deltaTime);
+            alien_trail.widthMultiplier = life / maxLife;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -65,13 +67,15 @@ public class PlayerController : PlayerAbstrait
 
         if(collision.transform.tag == "Shot")
         {
+            //Modif de la couleur
             TakeDamage(damagaShot + (int)(bonus * rankBonus));
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-         if (corouSave == null)
+        //check manette branchée
+         if (corouSave == null && player.isPlaying)
         {
             if (collision.transform.tag == "ExtWall")
             {

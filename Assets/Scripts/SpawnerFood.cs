@@ -38,23 +38,29 @@ public class SpawnerFood : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(freePlace.Count > 0)
+		if(freePlace.Count > 0 && timerSpawn==0)
         {
             timerSpawn = delaySpawn;
             int nbRandom = Random.Range(0, freePlace.Count);
-            var gFood = Instantiate(prefabFood, freePlace[nbRandom].position, Quaternion.identity);
+            var gFood = Instantiate(prefabFood, freePlace[nbRandom].position.WithY(prefabFood.transform.position.y), prefabFood.transform.rotation/*Quaternion.identity*/);
             var scriptFood = freePlace[nbRandom];
             freePlace.Remove(scriptFood);
             scriptFood.food = gFood.GetComponent<Food>();
+            scriptFood.food.spFood = scriptFood;
             foodAlive.Add(scriptFood);
         }
         timerSpawn = Mathf.Max(0, timerSpawn - Time.deltaTime);
 	}
 
-    public void BackToTheList(FoodPos foodPos)
+    public void BackToTheList(Food foodPos)
     {
-        foodAlive.Remove(foodPos);
-        foodPos.food = null;
-        freePlace.Add(foodPos);
+        if (foodPos != null)
+        {
+            foodAlive.Remove(foodPos.spFood);
+            foodPos.spFood.food = null;
+            freePlace.Add(foodPos.spFood);
+            foodPos.spFood = null;
+            Destroy(foodPos.gameObject);
+        }
     }
 }

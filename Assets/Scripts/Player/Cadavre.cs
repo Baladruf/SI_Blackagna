@@ -15,6 +15,15 @@ public class Cadavre : PlayerAbstrait {
     [SerializeField] float forcePropulsion = 25;
     [SerializeField] float forcePropUp = 5;
     [SerializeField] float delayStun;
+    public SkinnedMeshRenderer head_mesh;
+    public SkinnedMeshRenderer body_mesh;
+    private Material head_material1;
+    private Material head_material2;
+    private Material body_material;
+    public Color takedamage;
+    private Color originalColor;
+    private Coroutine hitCoroutine;
+    [SerializeField] float timeHitColor = 0.2f;
 
     [SerializeField] Sprite portraitHumain;
     [SerializeField] Sprite portraitMonstre;
@@ -24,6 +33,11 @@ public class Cadavre : PlayerAbstrait {
         base.Awake();
         //rigidbodyCadavre = GetComponent<Rigidbody>();
         isHumain = true;
+        body_material = body_mesh.material;
+        head_material1 = head_mesh.materials[0];
+        head_material2 = head_mesh.materials[1];
+        originalColor = head_material1.color;
+
     }
 
     private void Start()
@@ -42,6 +56,14 @@ public class Cadavre : PlayerAbstrait {
 
     public override void TakeDamage(float damage, PlayerController player = null)
     {
+        if (hitCoroutine == null && cadavreWithPlayer != null)
+        {
+            hitCoroutine = StartCoroutine(HitColor());
+        }
+
+
+        print("hit");
+
         life -= damagePunch;
         if (cadavreWithPlayer != null)
         {
@@ -101,4 +123,21 @@ public class Cadavre : PlayerAbstrait {
             TakeDamage(damagePunch + (int)(bonus * rankBonus), (PlayerController)player);
         }
     }
+
+    private IEnumerator HitColor()
+    {
+        body_material.color = takedamage;
+        head_material1.color = takedamage;
+        head_material2.color = takedamage;
+
+        yield return new WaitForSeconds(timeHitColor);
+        
+        body_material.color = originalColor;
+        head_material1.color = originalColor;
+        head_material2.color = originalColor;
+
+        hitCoroutine = null;
+    }
+
+
 }
