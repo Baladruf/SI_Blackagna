@@ -34,6 +34,7 @@ public class Ruche : MonoBehaviour {
             }
             //dead ruche
             GameManager.Instance.AddIdDestroyRuche(player.id);
+            player.rucheIcon.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

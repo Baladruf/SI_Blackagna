@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Cadavre : PlayerAbstrait {
 
@@ -14,6 +15,9 @@ public class Cadavre : PlayerAbstrait {
     [SerializeField] float forcePropulsion = 25;
     [SerializeField] float forcePropUp = 5;
     [SerializeField] float delayStun;
+
+    [SerializeField] Sprite portraitHumain;
+    [SerializeField] Sprite portraitMonstre;
 
     protected override void Awake()
     {
@@ -30,11 +34,19 @@ public class Cadavre : PlayerAbstrait {
     // Update is called once per frame
     void Update () {
         life = Mathf.Min(maxHumainLife, life + (recupHpHumain * Time.deltaTime));
+        if(cadavreWithPlayer != null)
+        {
+            cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
+        }
     }
 
     public override void TakeDamage(float damage, PlayerController player = null)
     {
         life -= damagePunch;
+        if (cadavreWithPlayer != null)
+        {
+            cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
+        }
         if (life < 0)
         {
             cadavreWithPlayer.Actif_Inactif(true);
@@ -50,9 +62,13 @@ public class Cadavre : PlayerAbstrait {
                 cadavreWithPlayer.movement.Stun();
                 StartCoroutine(cadavreWithPlayer.TimeStun(delayStun));
 
+                cadavreWithPlayer.portraitPlayer.sprite = portraitMonstre;
                 cadavreWithPlayer = player;
+                cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
+
                 this.player = player.player;
                 player.Actif_Inactif(false);
+                cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
             }
         }
     }
@@ -76,9 +92,11 @@ public class Cadavre : PlayerAbstrait {
         {
             cadavreWithPlayer = (PlayerController)player;
             this.player = player.player;
+            cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
+            return;
         }
 
-            if (other.tag == "Punch" && player != null)
+        if (other.tag == "Punch" && player != null)
         {
             TakeDamage(damagePunch + (int)(bonus * rankBonus), (PlayerController)player);
         }

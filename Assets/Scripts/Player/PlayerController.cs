@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEngine.UI;
 
 public class PlayerController : PlayerAbstrait
 {
@@ -16,6 +17,13 @@ public class PlayerController : PlayerAbstrait
     [SerializeField] float maxTimeDead = 10;
     public Color colorPlayer {get; private set;}
     private Coroutine corouSave = null;
+
+
+    [SerializeField] Transform uiPlayer;
+    public Image portraitPlayer { get; private set; }
+    public Image rucheIcon { get; private set; }
+    public Slider lifeSlider { get; private set; }
+
     //public Color colorPlayer;
 
     protected override void Awake()
@@ -36,6 +44,10 @@ public class PlayerController : PlayerAbstrait
         alien_trail.colorGradient = alien_color_gradient;
         colorPlayer = alien_color_gradient.Evaluate(0);
         rendererMesh = meshObject.transform.GetChild(1).GetComponent<Renderer>();
+
+        portraitPlayer = uiPlayer.GetChild(0).GetComponent<Image>();
+        rucheIcon = uiPlayer.GetChild(1).GetComponent<Image>();
+        lifeSlider = uiPlayer.GetChild(2).GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -88,8 +100,9 @@ public class PlayerController : PlayerAbstrait
 
     public override void TakeDamage(float damage, PlayerController player = null)
     {
-        life -= damage;
-        if (life < 0 && !isDead)
+        life = Mathf.Max(0, life - damage);
+        lifeSlider.value = life / maxLife;
+        if (life <= 0 && !isDead)
         {
             isDead = true;
             Actif_Inactif(false);
@@ -118,11 +131,13 @@ public class PlayerController : PlayerAbstrait
     {
         //life = Mathf.Max(maxLife, life + foodRecup);
         life = Mathf.Min(maxLife, life + foodRecup);
+        lifeSlider.value = life / maxLife;
     }
 
     public void RecupFullLife()
     {
         life = maxLife;
+        lifeSlider.value = life / maxLife;
     }
 
     IEnumerator Rumble(float leftMotor, float rightMotor, float duration)
