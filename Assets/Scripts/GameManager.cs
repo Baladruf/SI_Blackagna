@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,6 +16,13 @@ public class GameManager : MonoBehaviour {
     private int countRuche = 4;
     [SerializeField] Text textVictoire;
     [SerializeField] float delayVictory = 3;
+    [SerializeField] Image[] wonPlayer;
+    [SerializeField] float delayFade = 0.5f;
+    [SerializeField] Image[] destroyRuche;
+    private List<int> idRucheDestroy;
+    private bool isDestroyRucheAnime = false;
+    [SerializeField] float delayFadeRucheDestroy = 0.5f;
+    [SerializeField] float delayPrintDestroyRuche = 0.5f;
 
     private void Awake()
     {
@@ -25,6 +33,7 @@ public class GameManager : MonoBehaviour {
             players[i] = playersControllers.GetChild(i).GetComponent<PlayerController>();
         }
         cadavre = playersControllers.GetChild(4).GetComponent<Cadavre>();
+        idRucheDestroy = new List<int>();
     }
 
     private void Start()
@@ -47,10 +56,14 @@ public class GameManager : MonoBehaviour {
                 }
             }
             if(monsterRestant == 1){
-                textVictoire.gameObject.SetActive(true);
-                textVictoire.text = "Le joueur " + (rank + 1) + " a survecu !";
-                StartCoroutine(ChangeScene());
+                StartCoroutine(ChangeScene(rank));
             }
+        }
+
+        if(!isDestroyRucheAnime && idRucheDestroy.Count > 0)
+        {
+            isDestroyRucheAnime = true;
+            StartCoroutine(PrintDestroyRuche());
         }
     }
 
@@ -58,9 +71,29 @@ public class GameManager : MonoBehaviour {
         countRuche--;
     }
 
-    private IEnumerator ChangeScene()
+    private IEnumerator ChangeScene(int rank)
     {
-        yield return new WaitForSeconds(delayVictory);
-        //SceneManager.LoadScene("Scenes/");
+        wonPlayer[rank].DOFade(1, delayFade);
+        yield return new WaitForSeconds(delayVictory + delayFade);
+        wonPlayer[rank].DOFade(0, delayFade).OnComplete(() =>
+        {
+            //SceneManager.LoadScene("Scenes/");
+        });
+    }
+
+    private IEnumerator PrintDestroyRuche()
+    {
+        destroyRuche[idRucheDestroy[0]].DOFade(1, delayFadeRucheDestroy);
+        yield return new WaitForSeconds(delayPrintDestroyRuche + delayFadeRucheDestroy);
+        destroyRuche[idRucheDestroy[0]].DOFade(0, delayFadeRucheDestroy).OnComplete(() =>
+        {
+            idRucheDestroy.RemoveAt(0);
+            isDestroyRucheAnime = false;
+        });
+    }
+
+    public void AddIdDestroyRuche(int id)
+    {
+        idRucheDestroy.Add(id);
     }
 }

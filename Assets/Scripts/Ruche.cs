@@ -33,6 +33,7 @@ public class Ruche : MonoBehaviour {
                 GameManager.Instance.players[i].AddRankBonus();
             }
             //dead ruche
+            GameManager.Instance.AddIdDestroyRuche(player.id);
             Destroy(gameObject);
         }
     }
