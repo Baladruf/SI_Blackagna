@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     public Cadavre cadavre;
     public PlayerController[] players;
     private int countRuche = 4;
-    [SerializeField] Text textVictoire;
+    //[SerializeField] Text textVictoire;
     [SerializeField] float delayVictory = 3;
     [SerializeField] Image[] wonPlayer;
     [SerializeField] float delayFade = 0.5f;
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     private bool isDestroyRucheAnime = false;
     [SerializeField] float delayFadeRucheDestroy = 0.5f;
     [SerializeField] float delayPrintDestroyRuche = 0.5f;
+    private bool transitionWin = false;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     private void Update()
     {
-        if(countRuche <= 1){
+        if(countRuche <= 1 && !transitionWin){
             int monsterRestant = 0;
             int rank = 0;
             for(int i = 0; i < players.Length; i++){
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
             if(monsterRestant == 1){
+                transitionWin = true;
                 StartCoroutine(ChangeScene(rank));
             }
         }
@@ -74,7 +76,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator ChangeScene(int rank)
     {
         wonPlayer[rank].DOFade(1, delayFade);
+        wonPlayer[rank].transform.GetChild(0).GetComponent<Image>().DOFade(1, delayFade);
         yield return new WaitForSeconds(delayVictory + delayFade);
+        wonPlayer[rank].transform.GetChild(0).GetComponent<Image>().DOFade(0, delayFade);
         wonPlayer[rank].DOFade(0, delayFade).OnComplete(() =>
         {
             //SceneManager.LoadScene("Scenes/");
@@ -84,7 +88,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator PrintDestroyRuche()
     {
         destroyRuche[idRucheDestroy[0]].DOFade(1, delayFadeRucheDestroy);
+        destroyRuche[idRucheDestroy[0]].transform.GetChild(0).GetComponent<Image>().DOFade(1, delayFadeRucheDestroy);
         yield return new WaitForSeconds(delayPrintDestroyRuche + delayFadeRucheDestroy);
+        destroyRuche[idRucheDestroy[0]].transform.GetChild(0).GetComponent<Image>().DOFade(0, delayFadeRucheDestroy);
         destroyRuche[idRucheDestroy[0]].DOFade(0, delayFadeRucheDestroy).OnComplete(() =>
         {
             idRucheDestroy.RemoveAt(0);

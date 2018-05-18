@@ -75,7 +75,7 @@ public class PlayerController : PlayerAbstrait
     private void OnCollisionStay(Collision collision)
     {
         //check manette branchée
-         if (corouSave == null && player.isPlaying)
+         /*if (corouSave == null && player.isPlaying)
         {
             if (collision.transform.tag == "ExtWall")
             {
@@ -85,7 +85,7 @@ public class PlayerController : PlayerAbstrait
             {
                 corouSave = StartCoroutine(Rumble(0.5f, 0.4f, 0.15f));
             }
-        }
+        }*/
     }
 
     public override bool Equals(object other)

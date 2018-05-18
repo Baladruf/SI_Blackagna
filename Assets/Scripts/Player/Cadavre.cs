@@ -110,11 +110,12 @@ public class Cadavre : PlayerAbstrait {
         //faire swap
         var player = attaquant.action.playerController;
 
+        //print(" var null = " + (cadavreWithPlayer == null) + ", " + (player == null));
         if (cadavreWithPlayer == null && player != null)
         {
             cadavreWithPlayer = (PlayerController)player;
             this.player = player.player;
-            cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
+            //print("change icon");
             return;
         }
 
@@ -139,5 +140,8 @@ public class Cadavre : PlayerAbstrait {
         hitCoroutine = null;
     }
 
-
+    public void ChangeSprite()
+    {
+        cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
+    }
 }
