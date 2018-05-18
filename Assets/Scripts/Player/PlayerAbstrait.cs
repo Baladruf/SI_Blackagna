@@ -31,6 +31,8 @@ public abstract class PlayerAbstrait : MonoBehaviour {
 
     public bool isActif { get; protected set; }
 
+    public Animator animator { get; protected set; }
+
     public void SetPlayerForward(Vector3 value)
     {
         if (value != Vector3.zero)
@@ -50,6 +52,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
         rendererMesh = meshObject.GetComponent<Renderer>();
         isDead = false;
         isActif = true;
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     public void TimerInvincible()
@@ -77,6 +80,7 @@ public abstract class PlayerAbstrait : MonoBehaviour {
     {
         if (actif)
         {
+            animator.enabled = true;
             rendererMesh.enabled = true;
             colliderPlayer.enabled = true;
             rb.useGravity = true;
@@ -85,11 +89,31 @@ public abstract class PlayerAbstrait : MonoBehaviour {
         }
         else
         {
-            rendererMesh.enabled = false;
-            rb.useGravity = false;
-            colliderPlayer.enabled = false;
-            alien_trail.enabled = false;
-            isActif = false;
+            animator.SetTrigger("death");
+            if (isDead)
+            {
+                StartCoroutine(AnimationDeath());
+            }
+            else
+            {
+                animator.enabled = false;
+                rendererMesh.enabled = false;
+                rb.useGravity = false;
+                colliderPlayer.enabled = false;
+                alien_trail.enabled = false;
+                isActif = false;
+            }
         }
+    }
+
+    protected IEnumerator AnimationDeath()
+    {
+        yield return new WaitForSeconds(3.15f);
+        animator.enabled = false;
+        rendererMesh.enabled = false;
+        rb.useGravity = false;
+        colliderPlayer.enabled = false;
+        alien_trail.enabled = false;
+        isActif = false;
     }
 }

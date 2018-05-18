@@ -47,6 +47,7 @@ public class PlayerAction : MonoBehaviour {
 
             if (playerController.player.GetButton("RightTrigger") && cooldownShot)
             {
+                //playerController.animator.SetTrigger("attack");
                 cooldownShot = false;
                 StartCoroutine(TimeShot());
             }
@@ -55,6 +56,7 @@ public class PlayerAction : MonoBehaviour {
         {
             if (playerController.player.GetButton("RightTrigger") && cooldownPunch)
             {
+                playerController.animator.SetTrigger("attack");
                 coneAttack.enabled = true;
                 cooldownPunch = false;
                 StartCoroutine(TimerCollider());
