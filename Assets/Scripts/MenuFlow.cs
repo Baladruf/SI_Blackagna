@@ -43,7 +43,10 @@ public class MenuFlow : MonoBehaviour
         PlayerRefReady[playerID].SetActive(true);
 
         if (PlayerRefReady[0].activeSelf && PlayerRefReady[1].activeSelf && PlayerRefReady[2].activeSelf && PlayerRefReady[3].activeSelf)
-            Debug.Log("Start Game");
+        {
+            SceneManager.LoadScene("Scenes/FINAL_SCENE_SAVE");
+        }
+            //Debug.Log("Start Game");
     }
 
     IEnumerator Pulse()

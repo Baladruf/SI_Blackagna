@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour {
         wonPlayer[rank].transform.GetChild(0).GetComponent<Image>().DOFade(0, delayFade);
         wonPlayer[rank].DOFade(0, delayFade).OnComplete(() =>
         {
-            //SceneManager.LoadScene("Scenes/");
+            SceneManager.LoadScene("Scenes/UIScene");
         });
     }
 
