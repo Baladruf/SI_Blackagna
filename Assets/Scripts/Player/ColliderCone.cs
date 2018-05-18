@@ -30,6 +30,7 @@ public class ColliderCone : MonoBehaviour {
         cadavre.player = action.playerController.player;
         cadavre.SetHumainLife();
         action.playerController.Actif_Inactif(false);
+        cadavre.ChangeSprite();
         cadavre.MakeSplashBlood();
     }
 }

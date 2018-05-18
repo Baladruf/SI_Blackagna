@@ -26,6 +26,9 @@ public class Cadavre : PlayerAbstrait {
     [SerializeField] float timeHitColor = 0.2f;
     public ParticleSystem particleEnter;
 
+    [SerializeField] Sprite portraitHumain;
+    [SerializeField] Sprite portraitMonstre;
+
     protected override void Awake()
     {
         base.Awake();
@@ -46,6 +49,10 @@ public class Cadavre : PlayerAbstrait {
     // Update is called once per frame
     void Update () {
         life = Mathf.Min(maxHumainLife, life + (recupHpHumain * Time.deltaTime));
+        if(cadavreWithPlayer != null)
+        {
+            cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
+        }
     }
 
     public override void TakeDamage(float damage, PlayerController player = null)
@@ -59,6 +66,10 @@ public class Cadavre : PlayerAbstrait {
         print("hit");
 
         life -= damagePunch;
+        if (cadavreWithPlayer != null)
+        {
+            cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
+        }
         if (life < 0)
         {
             cadavreWithPlayer.Actif_Inactif(true);
@@ -74,12 +85,15 @@ public class Cadavre : PlayerAbstrait {
                 cadavreWithPlayer.movement.Stun();
                 StartCoroutine(cadavreWithPlayer.TimeStun(delayStun));
 
+                cadavreWithPlayer.portraitPlayer.sprite = portraitMonstre;
 
                 MakeSplashBlood();
                 cadavreWithPlayer = player;
+                cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
 
                 this.player = player.player;
                 player.Actif_Inactif(false);
+                cadavreWithPlayer.lifeSlider.value = life / maxHumainLife;
             }
         }
     }
@@ -99,13 +113,16 @@ public class Cadavre : PlayerAbstrait {
         //faire swap
         var player = attaquant.action.playerController;
 
+        //print(" var null = " + (cadavreWithPlayer == null) + ", " + (player == null));
         if (cadavreWithPlayer == null && player != null)
         {
             cadavreWithPlayer = (PlayerController)player;
             this.player = player.player;
+            //print("change icon");
+            return;
         }
 
-            if (other.tag == "Punch" && player != null)
+        if (other.tag == "Punch" && player != null)
         {
             TakeDamage(damagePunch + (int)(bonus * rankBonus), (PlayerController)player);
         }
@@ -126,6 +143,10 @@ public class Cadavre : PlayerAbstrait {
         hitCoroutine = null;
     }
 
+    public void ChangeSprite()
+    {
+        cadavreWithPlayer.portraitPlayer.sprite = portraitHumain;
+    }
     public void MakeSplashBlood()
     {
         particleEnter.Play();
