@@ -39,8 +39,10 @@ public class PlayerController : PlayerAbstrait
     // Update is called once per frame
     void Update()
     {
-        TakeDamage(dot * Time.deltaTime);
-        alien_trail.widthMultiplier = life / maxLife;
+        if(isActif){
+            TakeDamage(dot * Time.deltaTime);
+            alien_trail.widthMultiplier = life / maxLife;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
