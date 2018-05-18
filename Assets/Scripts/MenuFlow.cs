@@ -24,11 +24,20 @@ public class MenuFlow : MonoBehaviour
     private bool _pulsing;
     private bool _isStartScreen = true;
 
+    private Player player;
+
     private void Start()
     {
         _pulseValue = 0.44f;
         _pulsing = true;
         StartCoroutine(Pulse());
+    }
+
+    private void Update()
+    {
+        Controller ctrl = ReInput.controllers.GetLastActiveController();
+        if (ctrl != null)
+            ReadyPressed(ctrl.id);
     }
 
 	public void StartPressed()
@@ -71,5 +80,12 @@ public class MenuFlow : MonoBehaviour
         yield return new WaitWhile(twTLO.IsPlaying);
 
         PlayerMenu.SetActive(true);
+        _isStartScreen = false;
+    }
+
+    IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Splash");
     }
 }
